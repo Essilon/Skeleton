@@ -86,13 +86,13 @@ namespace Testing3
         public void DateOfBirthPropertyOK()
         {
             //create an instance of the class we want to create
-            clsCustomer AnAddress = new clsCustomer();
+            clsCustomer AnCustomer = new clsCustomer();
             //create some test data to assign to the property
             DateTime TestData = DateTime.Now.Date;
             //assign the data to the property
-            AnAddress.DateOfBirth = TestData;
+            AnCustomer.DateOfBirth = TestData;
             //test to see that the two values are the same
-            Assert.AreEqual(AnAddress.DateOfBirth, TestData);
+            Assert.AreEqual(AnCustomer.DateOfBirth, TestData);
         }
 
     }
