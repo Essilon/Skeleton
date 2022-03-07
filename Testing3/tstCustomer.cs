@@ -140,7 +140,7 @@ namespace Testing3
             //boolean variable to record if data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 CustomerID = 21;
+            Int32 CustomerID = 6;
             //invoke the method
             Found = AnCustomer.Find(CustomerID);
             //check the Customer ID
@@ -161,11 +161,11 @@ namespace Testing3
             //boolean variable to record if data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 CustomerID = 21;
+            Int32 CustomerID = 6;
             //invoke the method
             Found = AnCustomer.Find(CustomerID);
             //check the Customer ID
-            if (AnCustomer.DateOfBirth != Convert.ToDateTime("04/03/2022"))
+            if (AnCustomer.DateOfBirth != Convert.ToDateTime("04/03/1995"))
             {
                 OK = false;
             }
@@ -182,7 +182,7 @@ namespace Testing3
             //boolean variable to record if data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 CustomerID = 21;
+            Int32 CustomerID = 6;
             //invoke the method
             Found = AnCustomer.Find(CustomerID);
             //check the Customer ID
@@ -203,11 +203,11 @@ namespace Testing3
             //boolean variable to record if data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 CustomerID = 21;
+            Int32 CustomerID = 6;
             //invoke the method
             Found = AnCustomer.Find(CustomerID);
             //check the Customer ID
-            if (AnCustomer.Email != "Test@Email.com")
+            if (AnCustomer.Email != "Test Email")
             {
                 OK = false;
             }
@@ -224,7 +224,7 @@ namespace Testing3
             //boolean variable to record if data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 CustomerID = 21;
+            Int32 CustomerID = 6;
             //invoke the method
             Found = AnCustomer.Find(CustomerID);
             //check the Customer ID

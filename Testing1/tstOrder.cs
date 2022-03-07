@@ -84,7 +84,7 @@ namespace Testing1
         [TestMethod]
         public void PaymentDetailsPropertyOK()
         {
-            clsOrder AnOrder = new clseOrder();
+            clsOrder AnOrder = new clsOrder();
             Int32 TestData = 1231231;
             AnOrder.PaymentDetails = TestData;
             Assert.AreEqual(AnOrder.PaymentDetails, TestData);
