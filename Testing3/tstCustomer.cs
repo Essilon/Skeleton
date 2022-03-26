@@ -8,6 +8,14 @@ namespace Testing3
     [TestClass]
     public class tstCustomer
     {
+
+        //good test data
+        //create some test data to pass to the method
+        string Full_Name = "Name Test";
+        string DateOfBirth = DateTime.Now.Date.ToString();
+        string Email = "Email Test";
+        string Address = "Address Test";
+
         [TestMethod]
         public void InstanceOK()
         {
@@ -234,5 +242,450 @@ namespace Testing3
             }
             Assert.IsTrue(OK);
         }
+
+        [TestMethod]
+        public void ValidMethodOK()
+        {
+            //create an instance of the class we want to create
+            clsCustomer AnCustomer = new clsCustomer();
+            //string variable to store any error message
+            String Error = "";
+            //invoke the method
+            Error = AnCustomer.Valid(Full_Name, DateOfBirth, Email, Address);
+            //test tp see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void Full_NameMinLessOne()
+        {
+            //create an instance of the class we want to create
+            clsCustomer AnCustomer = new clsCustomer();
+            //string variable to store any error message
+            String Error = "";
+            //craete some test data to pass to the method
+            string Full_Name = ""; //this should trigger the error
+            //invoke the method
+            Error = AnCustomer.Valid(Full_Name, DateOfBirth, Email, Address);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void Full_NameMin()
+        {
+            //create an instance of the class we want to create
+            clsCustomer AnCustomer = new clsCustomer();
+            //string variable to store any error message
+            String Error = "";
+            //create some test data to pass to the method
+            string Full_Name = "a"; //this should be ok
+            //invoke the method
+            Error = AnCustomer.Valid(Full_Name, DateOfBirth, Email, Address);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void Full_NameMinPlusOne()
+        {
+            //create an instance of the class we want to create
+            clsCustomer AnCustomer = new clsCustomer();
+            //string variable to store any error message
+            String Error = "";
+            //create some test data to pass to the method
+            string Full_Name = "aa"; //this should be ok
+            //invoke the method
+            Error = AnCustomer.Valid(Full_Name, DateOfBirth, Email, Address);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void Full_NameMaxLessOne()
+        {
+            //create an instance of the class we want to create
+            clsCustomer AnCustomer = new clsCustomer();
+            //string variable to store any error message
+            String Error = "";
+            //create some test data to pass to the method
+            string Full_Name = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"; //this should be ok
+            //invoke the method
+            Error = AnCustomer.Valid(Full_Name, DateOfBirth, Email, Address);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void Full_NameMax()
+        {
+            //create an instance of the class we want to create
+            clsCustomer AnCustomer = new clsCustomer();
+            //string variable to store any error message
+            String Error = "";
+            //create some test data to pass to the method
+            string Full_Name = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"; //this should be ok
+            //invoke the method
+            Error = AnCustomer.Valid(Full_Name, DateOfBirth, Email, Address);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void Full_NameMid()
+        {
+            //create an instance of the class we want to create
+            clsCustomer AnCustomer = new clsCustomer();
+            //string variable to store any error message
+            String Error = "";
+            //create some test data to pass to the method
+            string Full_Name = "aaaaaaaaaaaaaaaaaaaaaaaaa"; //this should be ok
+            //invoke the method
+            Error = AnCustomer.Valid(Full_Name, DateOfBirth, Email, Address);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void Full_NameMaxPlusOne()
+        {
+            //create an instance of the class we want to create
+            clsCustomer AnCustomer = new clsCustomer();
+            //string variable to store any error message
+            String Error = "";
+            //create some test data to pass to the method
+            string Full_Name = ""; //this should be ok
+            Full_Name = Full_Name.PadRight(51, 'a'); //this should fail
+            //invoke the method
+            Error = AnCustomer.Valid(Full_Name, DateOfBirth, Email, Address);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void Full_NameExtremeMax()
+        {
+            //create an instance of the class we want to create
+            clsCustomer AnCustomer = new clsCustomer();
+            //string variable to store any error message
+            String Error = "";
+            //create some test data to pass to the method
+            string Full_Name = ""; //this should be ok
+            Full_Name = Full_Name.PadRight(1000, 'a'); //this should fail
+            //invoke the method
+            Error = AnCustomer.Valid(Full_Name, DateOfBirth, Email, Address);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DateOfBirthExtremeMin()
+        {
+            //create an instance of the class we want to create
+            clsCustomer AnCustomer = new clsCustomer();
+            //string variable to store any error messages
+            String Error = "";
+            //create a variable to store the test date data
+            DateTime TestDate;
+            //set the date to todays date -101 years
+            TestDate = DateTime.Now.Date.AddYears(-101);
+            //convert the date variable to a string variable
+            string DateOfBirth = TestDate.ToString();
+            //invoke the method
+            Error = AnCustomer.Valid(Full_Name, DateOfBirth, Email, Address);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");        
+        }
+
+        [TestMethod]
+        public void DateOfBirthMinLessOne()
+        {
+            //create an instance of the class we want to create
+            clsCustomer AnCustomer = new clsCustomer();
+            //string variable to store any error messages
+            String Error = "";
+            //create a variable to store the test date data
+            DateTime TestDate;
+            //set the date to todays date -100 years +-1 day
+            TestDate = DateTime.Now.Date.AddYears(-18).AddDays(-1);
+            //convert the date variable to a string variable
+            string DateOfBirth = TestDate.ToString();
+            //invoke the method
+            Error = AnCustomer.Valid(Full_Name, DateOfBirth, Email, Address);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DateOfBirthMin()
+        {
+            //create an instance of the class we want to create
+            clsCustomer AnCustomer = new clsCustomer();
+            //string variable to store any error messages
+            String Error = "";
+            //create a variable to store the test date data
+            DateTime TestDate;
+            //set the date to todays date - 18 years
+            TestDate = DateTime.Now.Date.AddYears(-18);
+            //convert the date variable to a string variable
+            string DateOfBirth = TestDate.ToString();
+            //invoke the method
+            Error = AnCustomer.Valid(Full_Name, DateOfBirth, Email, Address);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DateOfBirthMinPlusOne()
+        {
+            //create an instance of the class we want to create
+            clsCustomer AnCustomer = new clsCustomer();
+            //string variable to store any error messages
+            String Error = "";
+            //create a variable to store the test date data
+            DateTime TestDate;
+            //set the date to todays date -18 years +1 day
+            TestDate = DateTime.Now.Date.AddYears(-18).AddDays(+1);
+            //convert the date variable to a string variable
+            string DateOfBirth = TestDate.ToString();
+            //invoke the method
+            Error = AnCustomer.Valid(Full_Name, DateOfBirth, Email, Address);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DateOfBirthMaxLessOne()
+        {
+            //create an instance of the class we want to create
+            clsCustomer AnCustomer = new clsCustomer();
+            //string variable to store any error messages
+            String Error = "";
+            //create a variable to store the test date data
+            DateTime TestDate;
+            //set the date to todays date
+            TestDate = DateTime.Now.Date.AddYears(100).AddDays(-1);
+            //convert the date variable to a string variable
+            string DateOfBirth = TestDate.ToString();
+            //invoke the method
+            Error = AnCustomer.Valid(Full_Name, DateOfBirth, Email, Address);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DateOfBirthMax()
+        {
+            //create an instance of the class we want to create
+            clsCustomer AnCustomer = new clsCustomer();
+            //string variable to store any error messages
+            String Error = "";
+            //create a variable to store the test date data
+            DateTime TestDate;
+            //set the date to todays date
+            TestDate = DateTime.Now.Date.AddYears(100);
+            //convert the date variable to a string variable
+            string DateOfBirth = TestDate.ToString();
+            //invoke the method
+            Error = AnCustomer.Valid(Full_Name, DateOfBirth, Email, Address);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DateOfBirthMaxPlusOne()
+        {
+            //create an instance of the class we want to create
+            clsCustomer AnCustomer = new clsCustomer();
+            //string variable to store any error messages
+            String Error = "";
+            //create a variable to store the test date data
+            DateTime TestDate;
+            //set the date to todays date
+            TestDate = DateTime.Now.Date.AddYears(100).AddDays(+1);
+            //convert the date variable to a string variable
+            string DateOfBirth = TestDate.ToString();
+            //invoke the method
+            Error = AnCustomer.Valid(Full_Name, DateOfBirth, Email, Address);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DateOfBirthMid()
+        {
+            //create an instance of the class we want to create
+            clsCustomer AnCustomer = new clsCustomer();
+            //string variable to store any error messages
+            String Error = "";
+            //create a variable to store the test date data
+            DateTime TestDate;
+            //set the date to todays date
+            TestDate = DateTime.Now.Date.AddYears(50);
+            //convert the date variable to a string variable
+            string DateOfBirth = TestDate.ToString();
+            //invoke the method
+            Error = AnCustomer.Valid(Full_Name, DateOfBirth, Email, Address);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DateOfBirthExtremeMax()
+        {
+            //create an instance of the class we want to create
+            clsCustomer AnCustomer = new clsCustomer();
+            //string variable to store any error messages
+            String Error = "";
+            //create a variable to store the test date data
+            DateTime TestDate;
+            //set the date to todays date
+            TestDate = DateTime.Now.Date.AddYears(101);
+            //convert the date variable to a string variable
+            string DateOfBirth = TestDate.ToString();
+            //invoke the method
+            Error = AnCustomer.Valid(Full_Name, DateOfBirth, Email, Address);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DateOfBirthInvalidData()
+        {
+            //create an instance of the class we want to create
+            clsCustomer AnCustomer = new clsCustomer();
+            //string variable to store any error messages
+            String Error = "";
+            //convert the date variable to a string variable
+            string DateOfBirth = "This is not a valid date!";
+            //invoke the method
+            Error = AnCustomer.Valid(Full_Name, DateOfBirth, Email, Address);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+
+        [TestMethod]
+        public void EmailMinLessOne()
+        {
+            //create an instance of the class we want to create
+            clsCustomer AnCustomer = new clsCustomer();
+            //string variable to store any error message
+            String Error = "";
+            //craete some test data to pass to the method
+            string Full_Name = ""; //this should trigger the error
+            //invoke the method
+            Error = AnCustomer.Valid(Full_Name, DateOfBirth, Email, Address);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void EmailMin()
+        {
+            //create an instance of the class we want to create
+            clsCustomer AnCustomer = new clsCustomer();
+            //string variable to store any error message
+            String Error = "";
+            //create some test data to pass to the method
+            string Full_Name = "a"; //this should be ok
+            //invoke the method
+            Error = AnCustomer.Valid(Full_Name, DateOfBirth, Email, Address);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void EmailMinPlusOne()
+        {
+            //create an instance of the class we want to create
+            clsCustomer AnCustomer = new clsCustomer();
+            //string variable to store any error message
+            String Error = "";
+            //create some test data to pass to the method
+            string Full_Name = "aa"; //this should be ok
+            //invoke the method
+            Error = AnCustomer.Valid(Full_Name, DateOfBirth, Email, Address);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void EmailMaxLessOne()
+        {
+            //create an instance of the class we want to create
+            clsCustomer AnCustomer = new clsCustomer();
+            //string variable to store any error message
+            String Error = "";
+            //create some test data to pass to the method
+            string Full_Name = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"; //this should be ok
+            //invoke the method
+            Error = AnCustomer.Valid(Full_Name, DateOfBirth, Email, Address);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void EmailMax()
+        {
+            //create an instance of the class we want to create
+            clsCustomer AnCustomer = new clsCustomer();
+            //string variable to store any error message
+            String Error = "";
+            //create some test data to pass to the method
+            string Full_Name = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"; //this should be ok
+            //invoke the method
+            Error = AnCustomer.Valid(Full_Name, DateOfBirth, Email, Address);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void EmailMid()
+        {
+            //create an instance of the class we want to create
+            clsCustomer AnCustomer = new clsCustomer();
+            //string variable to store any error message
+            String Error = "";
+            //create some test data to pass to the method
+            string Full_Name = "aaaaaaaaaaaaaaaaaaaaaaaaa"; //this should be ok
+            //invoke the method
+            Error = AnCustomer.Valid(Full_Name, DateOfBirth, Email, Address);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void EmailMaxPlusOne()
+        {
+            //create an instance of the class we want to create
+            clsCustomer AnCustomer = new clsCustomer();
+            //string variable to store any error message
+            String Error = "";
+            //create some test data to pass to the method
+            string Full_Name = ""; //this should be ok
+            Full_Name = Full_Name.PadRight(51, 'a'); //this should fail
+            //invoke the method
+            Error = AnCustomer.Valid(Full_Name, DateOfBirth, Email, Address);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void EmailExtremeMax()
+        {
+            //create an instance of the class we want to create
+            clsCustomer AnCustomer = new clsCustomer();
+            //string variable to store any error message
+            String Error = "";
+            //create some test data to pass to the method
+            string Full_Name = ""; //this should be ok
+            Full_Name = Full_Name.PadRight(1000, 'a'); //this should fail
+            //invoke the method
+            Error = AnCustomer.Valid(Full_Name, DateOfBirth, Email, Address);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
     }
 }
