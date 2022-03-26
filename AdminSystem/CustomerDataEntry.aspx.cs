@@ -15,33 +15,62 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
     protected void btnOK_Click(object sender, EventArgs e)
     {
-        //create a new instance of clsCustomer
+        //create an instance of clsCustomer
         clsCustomer AnCustomer = new clsCustomer();
-        //store the address in this session object
-        Session["AnCustomer"] = AnCustomer;
 
-        //cpature the customer'd ID
-        AnCustomer.CustomerID = Convert.ToInt32(txtCustomerID.Text);
+        //capture the Customer ID
+        string CustomerID = txtCustomerID.Text;
 
         //capture the customer's Full Name
-        AnCustomer.Full_Name = txtFull_Name.Text;
+        string Full_Name = txtFull_Name.Text;
 
         //capture the Customer's Date of Birth
-        AnCustomer.DateOfBirth = Convert.ToDateTime(txtDate_of_Birth.Text);
-
-        //capture the Customer's Gender
-        AnCustomer.Gender = Convert.ToBoolean(MaleRadioButton1.Checked);
+        string DateOfBirth = txtDate_of_Birth.Text;
 
         //capture the Customer's Email
-        AnCustomer.Email = txtEmail.Text;
+        string Email = txtEmail.Text;
 
         //capture the Customer's Address
-        AnCustomer.Address = txtAddress.Text;
+        string Address = txtAddress.Text;
 
-        //navigate to the viewer page
-        Response.Redirect("CustomerViewer.aspx");
+        //variable to store any error messages
+        string Error = "";
+
+        //validate the data
+        Error = AnCustomer.Valid(Full_Name, DateOfBirth, Email, Address);
+        if (Error == "")
+        {
+            //cpature the customer'd ID
+            AnCustomer.CustomerID = Convert.ToInt32(txtCustomerID.Text);
+
+            //capture the customer's Full Name
+            AnCustomer.Full_Name = txtFull_Name.Text;
+
+            //capture the Customer's Date of Birth
+            AnCustomer.DateOfBirth = Convert.ToDateTime(txtDate_of_Birth.Text);
+
+            //capture the Customer's Gender
+            AnCustomer.Gender = Convert.ToBoolean(MaleRadioButton1.Checked);
+
+            //capture the Customer's Email
+            AnCustomer.Email = txtEmail.Text;
+
+            //capture the Customer's Address
+            AnCustomer.Address = txtAddress.Text;
+
+            //store the address in this session object
+            Session["AnCustomer"] = AnCustomer;
+
+            //navigate to the viewer page
+            Response.Redirect("CustomerViewer.aspx");
+        }
+        else
+        {
+            //display the error message
+            lblError.Text = Error;
+        }
+
     }
-
     protected void btnFind_Click(object sender, EventArgs e)
     {
         //create an instance for the Customer class

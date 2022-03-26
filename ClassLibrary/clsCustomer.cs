@@ -148,21 +148,21 @@ namespace ClassLibrary
             if (full_Name.Length == 0)
             {
                 //record the error
-                Error = Error + "The Full Name field cannot be left blank: ";
+                Error = Error + "The Full Name field cannot be left blank! ";
             }
 
             //if the full_Name entered is greater than 50 characters
             if (full_Name.Length > 50)
             {
                 //record the error
-                Error = Error + "The Full Name field cannot be more than 50 characters: ";
+                Error = Error + "The Full Name field cannot be more than 50 characters! ";
             }
 
             //if the full_Name is entered too long
             if (full_Name.Length > 1000)
             {
                 //record the error
-                Error = Error + "The Full Name field cannot be more than 50 characters: ";
+                Error = Error + "The Full Name field cannot be more than 50 characters! ";
             }
 
             try
@@ -173,21 +173,21 @@ namespace ClassLibrary
                 if (DateTemp < DateTime.Now.Date.AddYears(-100))
                 {
                     //record the error
-                    Error = Error + "The date of birth that was entered is invalid :";
+                    Error = Error + "The date of birth that was entered is invalid! ";
                 }
 
                 //check to  see if the date is greater than the date value
                 if (DateTemp > DateTime.Now.Date.AddDays(+1))
                 {
                     //record the error
-                    Error = Error + "The date you entered is in the future :";
+                    Error = Error + "The date you entered is in the future! ";
                 }
             }
 
             catch
                 {
                 //record the error
-                Error = Error + "This is not a date: ";
+                Error = Error + "This is not a valid date! ";
                 }
 
 
@@ -195,21 +195,21 @@ namespace ClassLibrary
             if (email.Length == 0)
             {
                 //record the error
-                Error = Error + "The email field cannot be left blank: ";
+                Error = Error + "The email field cannot be left blank! ";
             }
 
             //if the email entered is greater than 50 characters
             if (email.Length > 50)
             {
                 //record the error
-                Error = Error + "You cannot enter more than 50 characters: ";
+                Error = Error + "You cannot enter more than 50 characters! ";
             }
 
             //if the full_Name is too long
             if (email.Length > 1000)
             {
                 //record the error
-                Error = Error + "The enter more than 50 characters: ";
+                Error = Error + "The enter more than 50 characters! ";
             }
 
 
@@ -217,21 +217,21 @@ namespace ClassLibrary
             if (address.Length == 0)
             {
                 //record the error
-                Error = Error + "The Full Name field cannot be left blank: ";
+                Error = Error + "The Address field cannot be left blank! ";
             }
 
             //if the address is greater than 50 characters
             if (address.Length > 50)
             {
                 //record the error
-                Error = Error + "The Full Name field cannot be more than 50 characters: ";
+                Error = Error + "The Address field cannot be more than 50 characters! ";
             }
 
             //if the address is too long
             if (address.Length > 1000)
             {
                 //record the error
-                Error = Error + "The Full Name field cannot be more than 50 characters: ";
+                Error = Error + "The Address field cannot be more than 50 characters! ";
             }
 
             //return any error messages

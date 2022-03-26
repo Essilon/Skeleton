@@ -36,6 +36,8 @@
             <asp:RadioButton ID="MaleRadioButton1" Text="Male" runat="server" GroupName="Gender" />
             <asp:RadioButton ID="FemaleRadioButton2" Text="Female" runat="server" GroupName="Gender" />
             </fieldset>
+            <br />
+            <asp:Label ID="lblError" runat="server"></asp:Label>
         <br />
 
         <asp:Button ID="btnOK" runat="server" Text="OK" OnClick="btnOK_Click" />
