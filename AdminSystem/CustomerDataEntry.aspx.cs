@@ -42,27 +42,24 @@ public partial class _1_DataEntry : System.Web.UI.Page
         {
             //cpature the customer'd ID
             AnCustomer.CustomerID = Convert.ToInt32(txtCustomerID.Text);
-
             //capture the customer's Full Name
             AnCustomer.Full_Name = txtFull_Name.Text;
-
             //capture the Customer's Date of Birth
             AnCustomer.DateOfBirth = Convert.ToDateTime(txtDate_of_Birth.Text);
-
             //capture the Customer's Gender
             AnCustomer.Gender = Convert.ToBoolean(MaleRadioButton1.Checked);
-
             //capture the Customer's Email
             AnCustomer.Email = txtEmail.Text;
-
             //capture the Customer's Address
             AnCustomer.Address = txtAddress.Text;
-
-            //store the address in this session object
-            Session["AnCustomer"] = AnCustomer;
-
-            //navigate to the viewer page
-            Response.Redirect("CustomerViewer.aspx");
+            //create an instance of the address collection
+            clsCustomerCollection CustomerList = new clsCustomerCollection();
+            //set the ThisCustomer property
+            CustomerList.ThisCustomer = AnCustomer;
+            //add the new record
+            CustomerList.Add();
+            //redirect back to the list page
+            Response.Redirect("CustomerList.aspx");
         }
         else
         {
