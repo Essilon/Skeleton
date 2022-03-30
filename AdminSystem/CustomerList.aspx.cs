@@ -60,4 +60,25 @@ public partial class _1_List : System.Web.UI.Page
             lblError.Text = "Please select a record to be edited from the list above.";
         }
     }
+
+    protected void btnDelete_Click(object sender, EventArgs e)
+    {
+        //var to store the primary key value of the record to be edited
+        Int32 CustomerID;
+        //if a record has been selected from the list
+        if (lstCustomerList.SelectedIndex != -1)
+        {
+            //get the primary key value of the record to edit
+            CustomerID = Convert.ToInt32(lstCustomerList.SelectedValue);
+            //store the data in the session object
+            Session["CustomerID"] = CustomerID;
+            //redirect to the delete page
+            Response.Redirect("CustomerConfirmDelete.aspx");
+        }
+        //if no record has been selected
+        else
+        {
+            lblError.Text = "Please select a record to be delete from the list above.";
+        }
+    }
 }
