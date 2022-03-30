@@ -50,32 +50,12 @@ namespace ClassLibrary
 
         public clsCustomerCollection()
         {
-            //var for the index
-            Int32 Index = 0;
-            //var to store the record count
-            Int32 RecordCount = 0;
-            //ibject for the data connection
+            //object for the data connection
             clsDataConnection DB = new clsDataConnection();
             //execute the stored procedure
             DB.Execute("sproc_tblCustomer_SelectAll");
-            //get the count of records
-            RecordCount = DB.Count;
-            //while there are records to process
-            while (Index < RecordCount)
-            {
-                clsCustomer AnCustomer = new clsCustomer();
-                //copy the data from the database to the private data members
-                AnCustomer.CustomerID = Convert.ToInt32(DB.DataTable.Rows[Index]["CustomerID"]);
-                AnCustomer.Full_Name = Convert.ToString(DB.DataTable.Rows[Index]["Full_Name"]);
-                AnCustomer.DateOfBirth = Convert.ToDateTime(DB.DataTable.Rows[Index]["Date_of_Birth"]);
-                AnCustomer.Gender = Convert.ToBoolean(DB.DataTable.Rows[Index]["Gender"]);
-                AnCustomer.Email = Convert.ToString(DB.DataTable.Rows[Index]["Email"]);
-                AnCustomer.Address = Convert.ToString(DB.DataTable.Rows[Index]["Address"]);
-                //add the record to the private data member
-                mCustomerList.Add(AnCustomer);
-                //point at the next record
-                Index++;
-            }
+            //populate the array list with the data table
+            PopulateArray(DB);
         }
 
         public int Add()
@@ -117,6 +97,47 @@ namespace ClassLibrary
             DB.AddParameter("@CustomerID", mThisCustomer.CustomerID);
             //execute the stored procedure
             DB.Execute("sproc_tblCustomer_Delete");
+        }
+
+        public void ReportByAddress(string Address)
+        {
+            //filters the record based on a full or partial post code
+            //connect to the database
+            clsDataConnection DB = new clsDataConnection();
+            //send the postcode parameter to the database
+            DB.AddParameter("@Address", Address);
+            //execute the sotred [rpcedure
+            DB.Execute("sproc_tblCustomer_FilterByAddress");
+            PopulateArray(DB);
+        }
+
+        void PopulateArray(clsDataConnection DB)
+        {
+            //var for the index
+            Int32 Index = 0;
+            //var to soter the record count
+            Int32 RecordCount;
+            //get the count of the records
+            RecordCount = DB.Count;
+            //clear the private array list
+            mCustomerList = new List<clsCustomer>();
+            //while there are records to process
+            while (Index < RecordCount)
+            {
+                //create a blank address
+                clsCustomer AnCustomer = new clsCustomer();
+                //read in the fields from the current record
+                AnCustomer.CustomerID = Convert.ToInt32(DB.DataTable.Rows[Index]["CustomerID"]);
+                AnCustomer.Full_Name = Convert.ToString(DB.DataTable.Rows[Index]["Full_Name"]);
+                AnCustomer.DateOfBirth = Convert.ToDateTime(DB.DataTable.Rows[Index]["Date_of_Birth"]);
+                AnCustomer.Gender = Convert.ToBoolean(DB.DataTable.Rows[Index]["Gender"]);
+                AnCustomer.Email = Convert.ToString(DB.DataTable.Rows[Index]["Email"]);
+                AnCustomer.Address = Convert.ToString(DB.DataTable.Rows[Index]["Address"]);
+                //add the record to the private data member
+                mCustomerList.Add(AnCustomer);
+                //point at the next record
+                Index++;
+            }
         }
     }
 }
