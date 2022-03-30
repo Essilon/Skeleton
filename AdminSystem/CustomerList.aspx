@@ -12,6 +12,9 @@
             <asp:ListBox ID="lstCustomerList" runat="server" Height="191px" Width="303px"></asp:ListBox>
             <br />
             <asp:Button ID="btnAdd" runat="server" OnClick="btnAdd_Click" Text="Add" />
+            <asp:Button ID="btnEdit" runat="server" OnClick="btnEdit_Click" Text="Edit" />
+            <br />
+            <asp:Label ID="lblError" runat="server" Text="Label"></asp:Label>
         </div>
     </form>
 </body>
