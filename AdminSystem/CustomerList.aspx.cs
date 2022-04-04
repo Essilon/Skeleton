@@ -37,7 +37,7 @@ public partial class _1_List : System.Web.UI.Page
         //store -1 into the session object to indicate this is a jew record
         Session["CustomerID"] = -1;
         //redirect to the data entry page
-        Response.Redirect("CustomerDataEntry");
+        Response.Redirect("CustomerDataEntry.aspx");
     }
 
     protected void btnEdit_Click(object sender, EventArgs e)
