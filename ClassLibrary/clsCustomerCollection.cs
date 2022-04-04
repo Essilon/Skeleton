@@ -106,8 +106,9 @@ namespace ClassLibrary
             clsDataConnection DB = new clsDataConnection();
             //send the postcode parameter to the database
             DB.AddParameter("@Address", Address);
-            //execute the sotred [rpcedure
+            //execute the stored procedure
             DB.Execute("sproc_tblCustomer_FilterByAddress");
+            //populate the array list with the data table
             PopulateArray(DB);
         }
 
