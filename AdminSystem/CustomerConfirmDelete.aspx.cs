@@ -26,6 +26,16 @@ public partial class _1_ConfirmDelete : System.Web.UI.Page
         //delete the record
         Customer.Delete();
         //redirect back to the main page
-        Response.Redirect("CustomerList");
+        Response.Redirect("CustomerList.aspx");
+    }
+
+    protected void btnNo_Click(object sender, EventArgs e)
+    {
+        //create a new instance of the customer class
+        clsCustomerCollection Customer = new clsCustomerCollection();
+        //find the record to delete
+        Customer.ThisCustomer.Find(CustomerID);
+        //redirect back to the main page
+        Response.Redirect("CustomerList.aspx");
     }
 }

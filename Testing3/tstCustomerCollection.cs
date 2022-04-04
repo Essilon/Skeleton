@@ -126,7 +126,6 @@ namespace Testing3
             //var to sotre the primary key
             Int32 PrimaryKey = 0;
             //set its properties
-            TestItem.CustomerID = 1;
             TestItem.Full_Name = "Name Test";
             TestItem.DateOfBirth = DateTime.Now.Date;
             TestItem.Email = "Email Test";
@@ -157,7 +156,7 @@ namespace Testing3
         [TestMethod]
         public void DeleteMethodOK()
         {
-            //craete an instance of the class we want to create
+            //create an instance of the class we want to create
             clsCustomerCollection AllCustomers = new clsCustomerCollection();
             //create the item of test data
             clsCustomer TestItem = new clsCustomer();
@@ -204,7 +203,7 @@ namespace Testing3
             //create an instance of the filtered data
             clsCustomerCollection FilteredCustomers = new clsCustomerCollection();
             //applky a address that doesn't exist
-            FilteredCustomers.ReportByAddress("xxx-xxx");
+            FilteredCustomers.ReportByAddress("A random address");
             //test to see that there are no records
             Assert.AreEqual(0, FilteredCustomers.Count);
         }
@@ -217,7 +216,7 @@ namespace Testing3
             //var to store outcome
             Boolean OK = true;
             //apply a post code that doesn't exist
-            FilteredCustomers.ReportByAddress("yyy-yyy");
+            FilteredCustomers.ReportByAddress("Another random address");
             //check that the correct number of records are found
             if (FilteredCustomers.Count == 2)
             {

@@ -83,20 +83,20 @@ public partial class _1_DataEntry : System.Web.UI.Page
             //if this is a new record i.e. CustomerID = -1 then add the data
             if (CustomerID == -1)
             {
-            //set the ThisCustomer property
-            CustomerList.ThisCustomer = AnCustomer;
-            //add the new record
-            CustomerList.Add();
+                //set the ThisCustomer property
+                CustomerList.ThisCustomer = AnCustomer;
+                //add the new record
+                CustomerList.Add();
             }
             //if not then it must be updated
             else
             {
-            //find the record to u[date
-            CustomerList.ThisCustomer.Find(CustomerID);
-            //set the ThisCustomer property
-            CustomerList.ThisCustomer = AnCustomer;
-            //update the record
-            CustomerList.Update();
+                //find the record to update
+                CustomerList.ThisCustomer.Find(CustomerID);
+                //set the ThisCustomer property
+                CustomerList.ThisCustomer = AnCustomer;
+                //update the record
+                CustomerList.Update();
             }
             //redirect back to the list page
             Response.Redirect("CustomerList.aspx");
