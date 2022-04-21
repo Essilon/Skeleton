@@ -89,6 +89,114 @@ namespace Testing1
             AnOrder.PaymentDetails = TestData;
             Assert.AreEqual(AnOrder.PaymentDetails, TestData);
         }
+
+        [TestMethod]
+        public void FindMethodOK()
+        {
+            //create an instance of the class
+            clsOrder AnOrder = new clsOrder();
+            //boolean variablei to store the results of the validation
+            Boolean Found = false;
+            //create some test data to use
+            Int32 OrderNo = 21;
+            //invoke method
+            Found = AnOrder.Find(OrderNo);
+            //test to see if true
+            Assert.IsTrue(Found);
+
+        }
+
+        [TestMethod]
+        public void TestOrderNoFound()
+        {
+            clsOrder AnOrder = new clsOrder();
+            Boolean Found = false;
+            Boolean Ok = true;
+            Int32 OrderNo = 21;
+            Found = AnOrder.Find(OrderNo);
+            if (AnOrder.OrderNo != 21)
+            {
+                Ok = false;
+            }
+            Assert.IsTrue(Ok);
+        }
+
+        [TestMethod]
+        public void TestOrderPassFound()
+        {
+            clsOrder AnOrder = new clsOrder();
+            Boolean Found = false;
+            Boolean Ok = true;
+            Int32 OrderNo = 21;
+            Found = AnOrder.Find(OrderNo);
+            if(AnOrder.OrderPass != true)
+            {
+                Ok = false;
+            }
+            Assert.IsTrue(Ok);
+        }
+
+        [TestMethod]
+        public void TestEstDeliveryDateFound()
+        {
+            clsOrder AnOrder = new clsOrder();
+            Boolean Found = false;
+            Boolean Ok = true;
+            Int32 OrderNo = 21;
+            Found = AnOrder.Find(OrderNo);
+            if (AnOrder.EstDeliveryDate != Convert.ToDateTime("09/04/2000"))
+            {
+                Ok = false;
+            }
+            Assert.IsTrue(Ok);
+        }
+
+        [TestMethod]
+        public void TestDeliveryAddressFound()
+        {
+            clsOrder AnOrder = new clsOrder();
+            Boolean Found = false;
+            Boolean Ok = true;
+            Int32 OrderNo = 21;
+            Found = AnOrder.Find(OrderNo);
+            if (AnOrder.DeliveryAddress != "Test Address")
+            {
+                Ok = false;
+            }
+            Assert.IsTrue(Ok);
+
+        }
+        [TestMethod]
+        public void TestAutomatedComfEmail()
+        {
+            clsOrder AnOrder = new clsOrder();
+            Boolean Found = false;
+            Boolean Ok = true;
+            Int32 OrderNo = 21;
+            Found = AnOrder.Find(OrderNo);
+            if (AnOrder.AutomatedConfEmail != "Automatic conf email")
+            {
+                Ok = false;
+            }
+            Assert.IsTrue(Ok);
+        }
+        [TestMethod]
+        
+        public void TestPaymentDetails()
+        {
+            clsOrder AnOrder = new clsOrder();
+            Boolean Found = false;
+            Boolean Ok = true;
+            Int32 OrderNo = 21;
+            Found = AnOrder.Find(OrderNo);
+            if (AnOrder.PaymentDetails != 123456789)
+            {
+                Ok = false;
+            }
+            Assert.IsTrue(Ok);
+        }
+
+
     }
 
   
