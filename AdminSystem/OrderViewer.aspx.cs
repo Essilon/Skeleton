@@ -13,7 +13,7 @@ public partial class _1Viewer : System.Web.UI.Page
         //create a new instance of cls
         clsOrder anOrder = new clsOrder();
         //get the data from the session obj
-        anOrder = (clsOrder)Session["AnOrder"];
+        anOrder = (clsOrder)Session["AnOrder"]; 
 
         //display the house number for this entry
         Response.Write("Order Number" + anOrder.OrderNo + "<br / >");
