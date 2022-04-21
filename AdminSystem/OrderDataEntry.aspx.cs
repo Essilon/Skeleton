@@ -21,9 +21,21 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //store the order in session obj
         Session["AnOrder"] = AnOrder;
 
+        String OrderNo = txtOrderNo.Text;
+        String OrderPass = txtOrderPass.Text;
+        String EstDeliveryDate = txtEstDeliveryDate.Text;
+        String DeliveryAddress = txtDeliveryAdres.Text;
+        String AutomatedConfEmail = txtAutoEmComf.Text;
+        String PaymentDetails = txtPayDetail.Text;
+
         //capture the customers OrderNo
 
         AnOrder.OrderNo = Convert.ToInt32(txtOrderNo.Text);
+        AnOrder.OrderPass = Convert.ToBoolean(txtOrderPass.Text);
+        AnOrder.EstDeliveryDate = Convert.ToDateTime(txtEstDeliveryDate.Text);
+        AnOrder.DeliveryAddress = txtDeliveryAdres.Text;
+        AnOrder.AutomatedConfEmail = txtAutoEmComf.Text;
+        AnOrder.PaymentDetails = Convert.ToInt32(txtPayDetail.Text);
 
         //navigation
         Response.Redirect("OrderViewer.aspx");
