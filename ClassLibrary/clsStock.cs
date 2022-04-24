@@ -86,13 +86,31 @@ namespace ClassLibrary
 
         public bool Find(int SofaNumber)
         {
-            mSofaNumber = 1;
-            mSofaDescription = 1;
-            mSofaColour = "RED";
-            mDateAdded = Convert.ToDateTime("24/04/2022");
-            mPrice = 1;
-            mAvailable = true;
-            return true;
+
+            //create an instance of the data connection 
+            clsDataConnection DB = new clsDataConnection();
+            //add the prameter for the SofaNumber to search for
+            DB.AddParameter("@SofaNumber", SofaNumber);
+            //execute the store procedure
+            DB.Execute("sproc_tblAddress_FilterByAddressNo");
+            //if one record is found (there should be either one or zero!)
+            if(DB.Count == 1)
+            {
+                mSofaNumber = Convert.ToInt32(DB.DataTable.Rows[0]["Sofa Number"]);
+                mSofaDescription = Convert.ToInt32(DB.DataTable.Rows[0]["Sofa Description"]);
+                mSofaColour = Convert.ToString(DB.DataTable.Rows[0]["Sofa Colour"]);
+                mDateAdded = Convert.ToDateTime(DB.DataTable.Rows[0]["Date Time"]);
+                mPrice = Convert.ToDecimal(DB.DataTable.Rows[0]["Price"]);
+                mAvailable = Convert.ToBoolean(DB.DataTable.Rows[0]["Available"]);
+                //return that everything worked OK
+                return true;
+            }
+            //if no record was found 
+            else
+            {
+                //return false indicating a problem
+                return false;
+            }
         }
     }
 }
