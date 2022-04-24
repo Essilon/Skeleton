@@ -8,6 +8,7 @@ namespace Testing4
     public class tstStock
     {
         public object DataTime { get; private set; }
+        public bool OK { get; private set; }
 
         [TestMethod]
         public void InstanceOK()
@@ -96,5 +97,153 @@ namespace Testing4
             //test to see if the values are the same 
             Assert.AreEqual(AnStock.Available, TestData);
          }
+
+        [TestMethod]
+        public void FindMethodOK()
+        {
+            //create an instance of the class we want to create 
+            clsStock AnStock = new clsStock();
+            //boolean variable to store the results of the validation 
+            Boolean Found = false;
+            //create some testr data to use with the method
+            Int32 SofaNumber = 1;
+            //invoke the method 
+            Found = AnStock.Find(SofaNumber);
+            //test to see if the result is true;
+            Assert.IsTrue(Found);
+        }
+
+        [TestMethod]
+        public void TestSofaNumber()
+        {
+            //create an instance of the class we want to create 
+            clsStock AnStock = new clsStock();
+            //boolean varailbe to store the result of the search
+            Boolean Found = false;
+            //boolean varaible ro record if the data is OK (assume it is)
+            Boolean OK = true;
+            //create some test data to use witht he method 
+            Int32 SofaNumber = 1;
+            //invoke the method 
+            Found = AnStock.Find(SofaNumber);
+            //check the sofanumber 
+            if(AnStock.SofaNumber != 1)
+            {
+                OK = false;
+            }
+            //test to see that the result is correct
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestSofaDescription()
+        {
+            //create an instance of the class we want to create 
+            clsStock AnStock = new clsStock();
+            //boolean varailbe to store the result of the search
+            Boolean Found = false;
+            //boolean varaible ro record if the data is OK (assume it is)
+            Boolean OK = true;
+            //create some test data to use witht he method 
+            Int32 SofaNumber = 1;
+            //invoke the method 
+            Found = AnStock.Find(SofaNumber);
+            //check the sofanumber 
+            if (AnStock.SofaNumber != 1)
+            {
+                OK = false;
+            }
+            //test to see that the result is correct
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestSofaColour()
+        {
+            //create an instance of the class we want to create 
+            clsStock AnStock = new clsStock();
+            //boolean varailbe to store the result of the search
+            Boolean Found = false;
+            //boolean varaible ro record if the data is OK (assume it is)
+            Boolean OK = true;
+            //create some test data to use witht he method 
+            Int32 SofaNumber = 1;
+            //invoke the method 
+            Found = AnStock.Find(SofaNumber);
+            //check the sofanumber 
+            if (AnStock.SofaNumber != 1)
+            {
+                OK = false;
+            }
+            //test to see that the result is correct
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestDateAdded()
+        {
+            //create an instance of the class we want to create 
+            clsStock AnStock = new clsStock();
+            //boolean varailbe to store the result of the search
+            Boolean Found = false;
+            //boolean varaible ro record if the data is OK (assume it is)
+            Boolean OK = true;
+            //create some test data to use witht he method 
+            Int32 SofaNumber = 1;
+            //invoke the method 
+            Found = AnStock.Find(SofaNumber);
+            //check the sofanumber 
+            if (AnStock.DateAdded != Convert.ToDateTime("16/09/2015"))
+            {
+                OK = false;
+            }
+            //test to see that the result is correct
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestPrice()
+        {
+            //create an instance of the class we want to create 
+            clsStock AnStock = new clsStock();
+            //boolean varailbe to store the result of the search
+            Boolean Found = false;
+            //boolean varaible ro record if the data is OK (assume it is)
+            Boolean OK = true;
+            //create some test data to use witht he method 
+            Int32 SofaNumber = 1;
+            //invoke the method 
+            Found = AnStock.Find(SofaNumber);
+            //check the sofanumber 
+            if (AnStock.SofaNumber != 1)
+            {
+                OK = false;
+            }
+            //test to see that the result is correct
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestAvailable()
+        {
+            //create an instance of the class we want to create 
+            clsStock AnStock = new clsStock();
+            //boolean varailbe to store the result of the search
+            Boolean Found = false;
+            //boolean varaible ro record if the data is OK (assume it is)
+            Boolean OK = true;
+            //create some test data to use witht he method 
+            Int32 SofaNumber = 1;
+            //invoke the method 
+            Found = AnStock.Find(SofaNumber);
+            //check the sofanumber 
+            if (AnStock.SofaNumber != 1)
+            {
+                OK = false;
+            }
+            //test to see that the result is correct
+            Assert.IsTrue(OK);
+        }
+
     }
 }
