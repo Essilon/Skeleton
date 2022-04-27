@@ -7,6 +7,15 @@ namespace Testing1
     [TestClass]
     public class tstOrder
     {
+
+        //good test data
+        //create some test data to pass to method
+
+        string Est_Delivery_Date = DateTime.Now.Date.ToString();
+        string Delivery_Address = "Address";
+        string Automated_Conf_Email = "AutomaticConfEmail";
+        string Payment_Details = "12312312";
+
         [TestMethod]
         public void InstanceOK()
         {
@@ -196,8 +205,304 @@ namespace Testing1
             Assert.IsTrue(Ok);
         }
 
+        [TestMethod]
+        public void ValidMethodOk()
+        {
+            //create an instance of the class
+            clsOrder AnOrder = new clsOrder();
+            string Error = "";
+            Error = AnOrder.Valid(Est_Delivery_Date, Delivery_Address, Automated_Conf_Email, Payment_Details);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void EstDeliveryDateExtremeMin()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error = "";
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date.AddYears(-101);
+            string Est_Delivery_Date = TestDate.ToString();
+            Error = AnOrder.Valid(Est_Delivery_Date, Delivery_Address, Automated_Conf_Email, Payment_Details);
+            Assert.AreNotEqual(Error, "");
+
+        }
+
+        [TestMethod]
+        public void EstDeliveryDateLessOne()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error = "";
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date.AddYears(-18).AddDays(-1);
+            string Est_Delivery_Date = TestDate.ToString();
+            Error = AnOrder.Valid(Est_Delivery_Date, Delivery_Address, Automated_Conf_Email, Payment_Details);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void EstDeliveryDateMin()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error = "";
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date.AddYears(-18);
+            string Est_Delivery_Date = TestDate.ToString();
+            Error = AnOrder.Valid(Est_Delivery_Date, Delivery_Address, Automated_Conf_Email, Payment_Details);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void EstDeliveryDateMinPlusOne()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error = "";
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date.AddYears(-18).AddDays(+1);
+            string Est_Delivery_Date = TestDate.ToString();
+            Error = AnOrder.Valid(Est_Delivery_Date, Delivery_Address, Automated_Conf_Email, Payment_Details);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void EstDeliveryDateMaxLessOne()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error = "";
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date.AddYears(100).AddDays(-1);
+            string Est_Delivery_Date = TestDate.ToString();
+            Error = AnOrder.Valid(Est_Delivery_Date, Delivery_Address, Automated_Conf_Email, Payment_Details);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void EstDeliveryDateMax()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error = "";
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date.AddYears(100);
+            string Est_Delivery_Date = TestDate.ToString();
+            Error = AnOrder.Valid(Est_Delivery_Date, Delivery_Address, Automated_Conf_Email, Payment_Details);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void EstDeliveryDateMaxPlusOne()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error = "";
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date.AddYears(100).AddDays(+1);
+            string Est_Delivery_Date = TestDate.ToString();
+            Error = AnOrder.Valid(Est_Delivery_Date, Delivery_Address, Automated_Conf_Email, Payment_Details);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void EstDeliveryDateMid()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error = "";
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date.AddYears(50);
+            string Est_Delivery_Date = TestDate.ToString();
+            Error = AnOrder.Valid(Est_Delivery_Date, Delivery_Address, Automated_Conf_Email, Payment_Details);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void EstDeliveryDateExtremeMax()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error = "";
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date.AddYears(101);
+            string Est_Delivery_Date = TestDate.ToString();
+            Error = AnOrder.Valid(Est_Delivery_Date, Delivery_Address, Automated_Conf_Email, Payment_Details);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void EstDeliveryDateInvalidData()
+        {
+            //create an instance of the class we want to create
+            clsOrder AnOrder = new clsOrder();
+            //string variable to store any error messages
+            String Error = "";
+            //convert the date variable to a string variable
+            string DateOfBirth = "This is not a valid date!";
+            //invoke the method
+            Error = AnOrder.Valid(Est_Delivery_Date, Delivery_Address, Automated_Conf_Email, Payment_Details);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+        
+        [TestMethod]
+        public void DeliveryAddressMinLessOne()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error = "";
+            string Delivery_Address = "";
+            Error = AnOrder.Valid(Est_Delivery_Date, Delivery_Address, Automated_Conf_Email, Payment_Details);
+            Assert.AreNotEqual(Error, "");
+
+        }
+
+        [TestMethod]
+        public void DeliveryAddressMin()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error = "";
+            string Delivery_Address = "f";
+            Error = AnOrder.Valid(Est_Delivery_Date, Delivery_Address, Automated_Conf_Email, Payment_Details);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DeliveryAddressMinPlusOne()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error = "";
+            string Delivery_Address = "ff";
+            Error = AnOrder.Valid(Est_Delivery_Date, Delivery_Address, Automated_Conf_Email, Payment_Details);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DeliveryAddressMax()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error = "";
+            string Delivery_Address = "ffffffffffffffffffff";
+            Error = AnOrder.Valid(Est_Delivery_Date, Delivery_Address, Automated_Conf_Email, Payment_Details);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DeliveryAddressMaxLessOne()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error = "";
+            string Delivery_Address = "fffffffffffffffffff";
+            Error = AnOrder.Valid(Est_Delivery_Date, Delivery_Address, Automated_Conf_Email, Payment_Details);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DeliveryAddressMaxPlusOne()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error = "";
+            Delivery_Address = Delivery_Address.PadRight(21, 'f');
+            Error = AnOrder.Valid(Est_Delivery_Date, Delivery_Address, Automated_Conf_Email, Payment_Details);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DeliveryAddressExtremeMax()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error = "";
+            Delivery_Address = Delivery_Address.PadRight(1000, 'f');
+            Error = AnOrder.Valid(Est_Delivery_Date, Delivery_Address, Automated_Conf_Email, Payment_Details);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DeliveryAddressMid()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error = "";
+            string Delivery_Address = "ffffffffff";
+            Error = AnOrder.Valid(Est_Delivery_Date, Delivery_Address, Automated_Conf_Email, Payment_Details);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void AutomatedConfEmailMinLessOne()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error = "";
+            string Automated_Conf_Email = "";
+            Error = AnOrder.Valid(Est_Delivery_Date, Delivery_Address, Automated_Conf_Email, Payment_Details);
+            Assert.AreNotEqual(Error, "");
+
+        }
+
+        [TestMethod]
+        public void AutomatedConfEmailMin()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error = "";
+            string Automated_Conf_Email = "f";
+            Error = AnOrder.Valid(Est_Delivery_Date, Delivery_Address, Automated_Conf_Email, Payment_Details);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void AutomatedConfEmailMinPlusOne()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error = "";
+            string Automated_Conf_Email = "ff";
+            Error = AnOrder.Valid(Est_Delivery_Date, Delivery_Address, Automated_Conf_Email, Payment_Details);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void AutomatedConfEmailMax()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error = "";
+            Automated_Conf_Email = Automated_Conf_Email.PadRight(100);
+            Error = AnOrder.Valid(Est_Delivery_Date, Delivery_Address, Automated_Conf_Email, Payment_Details);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void AutomatedConfEmailMaxLessOne()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error = "";
+            Automated_Conf_Email = Automated_Conf_Email.PadRight(99);
+            Error = AnOrder.Valid(Est_Delivery_Date, Delivery_Address, Automated_Conf_Email, Payment_Details);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void AutomatedConfEmailMaxPlusOne()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error = "";
+            Automated_Conf_Email = Automated_Conf_Email.PadRight(100, 'f');
+            Error = AnOrder.Valid(Est_Delivery_Date, Delivery_Address, Automated_Conf_Email, Payment_Details);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void AutomatedConfEmailExtremeMax()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error = "";
+            Automated_Conf_Email = Automated_Conf_Email.PadRight(1000, 'f');
+            Error = AnOrder.Valid(Est_Delivery_Date, Delivery_Address, Automated_Conf_Email, Payment_Details);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void AutomatedConfEmailMid()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error = "";
+            Automated_Conf_Email = Automated_Conf_Email.PadRight(50);
+            Error = AnOrder.Valid(Est_Delivery_Date, Delivery_Address, Automated_Conf_Email, Payment_Details);
+            Assert.AreNotEqual(Error, "");
+        }
+
 
     }
 
-  
+
 }
