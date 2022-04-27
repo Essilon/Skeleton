@@ -4,93 +4,104 @@ namespace ClassLibrary
 {
     public class clsOrder
     {
-        private Int32 mOrderNo;
+        private Int32 mOrder_No;
 
-        public Int32 OrderNo
+        public Int32 Order_No
         {
             get
             {
-                return mOrderNo;
+                return mOrder_No;
             }
             set
             {
-                mOrderNo = value;
+                mOrder_No = value;
             }
         }
-        private Boolean mOrderPass;
-        public Boolean OrderPass
+        private Boolean mOrder_Pass;
+        public Boolean Order_Pass
         {
             get
             {
-                return mOrderPass;
+                return mOrder_Pass;
             }
             set
             {
-                mOrderPass = value;
+                mOrder_Pass = value;
             }
         }
-        private DateTime mEstDeliveryDate;
-        public DateTime EstDeliveryDate
+        private DateTime mEst_Delivery_Date;
+        public DateTime Est_Delivery_Date
         {
             get
             {
-                return mEstDeliveryDate;
+                return mEst_Delivery_Date;
             }
             set
             {
-                mEstDeliveryDate = value;
+                mEst_Delivery_Date = value;
             }
         }
-        private string mDeliveryAddress;
-        public string DeliveryAddress
+        private string mDelivery_Address;
+        public string Delivery_Address
         {
             get
             {
-                return mDeliveryAddress;
+                return mDelivery_Address;
             }
             set
             {
-                mDeliveryAddress = value;
+                mDelivery_Address = value;
             }
         }
-        private string mAutomatedConfEmail;
-        public string AutomatedConfEmail
+        private string mAutomated_Conf_Email;
+        public string Automated_Conf_Email
         {
             get
             {
-                return mAutomatedConfEmail;
+                return mAutomated_Conf_Email;
             }
             set
             {
-                mAutomatedConfEmail = value;
+                mAutomated_Conf_Email = value;
             }
         }
-        private Int32 mPaymentDetails;
-        public Int32 PaymentDetails
+        private Int32 mPayment_Details;
+        public Int32 Payment_Details
         {
             get
             {
-                return mPaymentDetails;
+                return mPayment_Details;
             }
             set
             {
-                mPaymentDetails = value;
+                mPayment_Details = value;
             }
-        }
-
-        public bool Find(int orderNo)
-        {
-            mOrderNo = 21;
-            mOrderPass = true;
-            mEstDeliveryDate = Convert.ToDateTime("09/04/2000");
-            mDeliveryAddress = "Test Address";
-            mAutomatedConfEmail = "Automatic conf email";
-            mPaymentDetails = 123456789;
-
-            //always return true
-            return true;
         }
 
+        public bool Find(int OrderNo)
+        {
+            //create an instance of the data connection 
+            clsDataConnection DB = new clsDataConnection();
+            //add the parameter for the order no to search for
+            DB.AddParameter("@OrderNo", OrderNo);
+            //execute the stored procedure
+            DB.Execute("sproc_tblOrders_FilterByOrderNo");
+            //if one record is found ss
+            if (DB.Count == 1) 
+            { 
+                mOrder_No = Convert.ToInt32(DB.DataTable.Rows[0]["OrderNo"]);
+                mOrder_Pass = Convert.ToBoolean(DB.DataTable.Rows[0]["OrderPass"]);
+                mEst_Delivery_Date = Convert.ToDateTime(DB.DataTable.Rows[0]["EstDeliveryDate"]);
+                mDelivery_Address = Convert.ToString(DB.DataTable.Rows[0]["DeliveryAddress"]);
+                mAutomated_Conf_Email = Convert.ToString(DB.DataTable.Rows[0]["AutomatedConfEmail"]);
+                mPayment_Details = Convert.ToInt32(DB.DataTable.Rows[0]["PaymentDetails"]);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
     }
 }
