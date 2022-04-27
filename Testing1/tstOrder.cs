@@ -24,9 +24,9 @@ namespace Testing1
             //create some test data to assign to the property
             int TestData = 1;
             //assign thee data to property
-            AnOrder.OrderNo = TestData;
+            AnOrder.Order_No = TestData;
             //test to see if the two values are the same
-            Assert.AreEqual(AnOrder.OrderNo, TestData);
+            Assert.AreEqual(AnOrder.Order_No, TestData);
 
         }
 
@@ -38,9 +38,9 @@ namespace Testing1
             //create some test data
             Boolean TestData = true;
             //assign to the property
-            AnOrder.OrderPass = TestData;
+            AnOrder.Order_Pass = TestData;
             //test to see that the two values are the same
-            Assert.AreEqual(AnOrder.OrderPass, TestData);
+            Assert.AreEqual(AnOrder.Order_Pass, TestData);
         }
 
         [TestMethod]
@@ -52,9 +52,9 @@ namespace Testing1
             //create some test data to assign
             DateTime TestData = DateTime.Now.Date;
             //asign to the property
-            AnOrder.EstDeliveryDate = TestData;
+            AnOrder.Est_Delivery_Date = TestData;
             //test to see that the two vals are same
-            Assert.AreEqual(AnOrder.EstDeliveryDate, TestData);
+            Assert.AreEqual(AnOrder.Est_Delivery_Date, TestData);
 
         }
 
@@ -65,9 +65,9 @@ namespace Testing1
 
             string TestData = "LE1 4AB Leicester";
 
-            AnOrder.DeliveryAddress = TestData;
+            AnOrder.Delivery_Address = TestData;
 
-            Assert.AreEqual(AnOrder.DeliveryAddress, TestData);
+            Assert.AreEqual(AnOrder.Delivery_Address, TestData);
         }
 
         [TestMethod]
@@ -76,8 +76,8 @@ namespace Testing1
 
             clsOrder AnOrder = new clsOrder();
             string TestData = "Order has been confirmed";
-            AnOrder.AutomatedConfEmail = TestData;
-            Assert.AreEqual(AnOrder.AutomatedConfEmail, TestData);
+            AnOrder.Automated_Conf_Email = TestData;
+            Assert.AreEqual(AnOrder.Automated_Conf_Email, TestData);
 
         }
 
@@ -86,8 +86,8 @@ namespace Testing1
         {
             clsOrder AnOrder = new clsOrder();
             Int32 TestData = 1231231;
-            AnOrder.PaymentDetails = TestData;
-            Assert.AreEqual(AnOrder.PaymentDetails, TestData);
+            AnOrder.Payment_Details = TestData;
+            Assert.AreEqual(AnOrder.Payment_Details, TestData);
         }
 
         [TestMethod]
@@ -97,7 +97,7 @@ namespace Testing1
             clsOrder AnOrder = new clsOrder();
             //boolean variablei to store the results of the validation
             Boolean Found = false;
-            //create some test data to use
+            //create some test data to usess
             Int32 OrderNo = 21;
             //invoke method
             Found = AnOrder.Find(OrderNo);
@@ -114,7 +114,7 @@ namespace Testing1
             Boolean Ok = true;
             Int32 OrderNo = 21;
             Found = AnOrder.Find(OrderNo);
-            if (AnOrder.OrderNo != 21)
+            if (AnOrder.Order_No != 21)
             {
                 Ok = false;
             }
@@ -129,7 +129,7 @@ namespace Testing1
             Boolean Ok = true;
             Int32 OrderNo = 21;
             Found = AnOrder.Find(OrderNo);
-            if(AnOrder.OrderPass != true)
+            if(AnOrder.Order_Pass != true)
             {
                 Ok = false;
             }
@@ -144,7 +144,7 @@ namespace Testing1
             Boolean Ok = true;
             Int32 OrderNo = 21;
             Found = AnOrder.Find(OrderNo);
-            if (AnOrder.EstDeliveryDate != Convert.ToDateTime("09/04/2000"))
+            if (AnOrder.Est_Delivery_Date != Convert.ToDateTime("09/04/2000"))
             {
                 Ok = false;
             }
@@ -159,7 +159,7 @@ namespace Testing1
             Boolean Ok = true;
             Int32 OrderNo = 21;
             Found = AnOrder.Find(OrderNo);
-            if (AnOrder.DeliveryAddress != "Test Address")
+            if (AnOrder.Delivery_Address != "Test Address")
             {
                 Ok = false;
             }
@@ -174,7 +174,7 @@ namespace Testing1
             Boolean Ok = true;
             Int32 OrderNo = 21;
             Found = AnOrder.Find(OrderNo);
-            if (AnOrder.AutomatedConfEmail != "Automatic conf email")
+            if (AnOrder.Automated_Conf_Email != "Automatic conf email")
             {
                 Ok = false;
             }
@@ -189,7 +189,7 @@ namespace Testing1
             Boolean Ok = true;
             Int32 OrderNo = 21;
             Found = AnOrder.Find(OrderNo);
-            if (AnOrder.PaymentDetails != 123456789)
+            if (AnOrder.Payment_Details != 123456789)
             {
                 Ok = false;
             }
