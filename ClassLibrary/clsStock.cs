@@ -84,6 +84,8 @@ namespace ClassLibrary
             }
         }
 
+        public object Count { get; set; }
+
         public bool Find(int SofaNumber)
         {
 
