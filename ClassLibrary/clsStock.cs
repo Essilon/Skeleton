@@ -117,6 +117,7 @@ namespace ClassLibrary
         {
             //create a string variable to store the error
             String Error = "";
+            
             //create a tempory variable to store date values 
             DateTime DateTemp;
             //if the sofanumber is blank
@@ -135,12 +136,12 @@ namespace ClassLibrary
 
             try
             {
-                //copy the dateAdded value to the DateTime variable 
+                //copy the dateAdded value to the DateTemp variable
                 DateTemp = Convert.ToDateTime(DateAdded);
                 if (DateTemp < DateTime.Now.Date)
                 {
                     //record the error
-                    Error = Error + "The date cannot be in the past:";
+                    Error = Error + "The date cannot be in the past : ";
                 }
                 //check to see if the date is greater than today's date
                 if (DateTemp > DateTime.Now.Date)
@@ -148,6 +149,7 @@ namespace ClassLibrary
                     //record the error
                     Error = Error + "The date cannot be in the future : ";
                 }
+
             }
             catch
             {
