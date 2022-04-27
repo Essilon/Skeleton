@@ -103,5 +103,49 @@ namespace ClassLibrary
             }
         }
 
+        public string Valid(string est_Delivery_Date, string delivery_Address, string automated_Conf_Email, string payment_Details)
+        {
+            String Error = "";
+            DateTime DateTemp;
+
+            try
+            {
+                DateTemp = Convert.ToDateTime(est_Delivery_Date);
+                if (DateTemp < DateTime.Now.Date)
+                {
+                    Error = Error + "The Date cannot be in the past: ";
+                }
+                if (DateTemp > DateTime.Now.Date)
+                {
+                    Error = Error + "The Date cannot be in the future: ";
+                }
+            }
+            catch
+            {
+                Error = Error + "The date was not a valid date: ";
+            }
+
+            //DELIVERY ADDRESS IF STATEMENT
+            if (delivery_Address.Length == 0)
+            {
+                Error = Error + " Delivery Address cannot be left blank! ";
+            }
+
+            if (delivery_Address.Length > 20)
+            {
+                Error = Error + "You cannot enter more then 20 characters! ";
+            }
+
+            //AUTOMATED CONF EMAIL IF STATEMENTS
+            if (automated_Conf_Email.Length == 0)
+            {
+                Error = Error + "Automated Confirmation email cannot be left blank! ";
+            }
+            if (automated_Conf_Email.Length > 100)
+            {
+                Error = Error + "You cannot entere more then 100 characters! ";
+            }
+            return Error;
+        }
     }
 }
