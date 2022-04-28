@@ -19,26 +19,37 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //create a new intance 
         clsOrder AnOrder = new clsOrder();
         //store the order in session obj
-        Session["AnOrder"] = AnOrder;
+      
 
-        String OrderNo = txtOrderNo.Text;
-        String OrderPass = txtOrderPass.Text;
-        String EstDeliveryDate = txtEstDeliveryDate.Text;
-        String DeliveryAddress = txtDeliveryAdres.Text;
-        String AutomatedConfEmail = txtAutoEmComf.Text;
-        String PaymentDetails = txtPayDetail.Text;
+        String Order_No = txtOrderNo.Text;
+        String Order_Pass = txtOrderPass.Text;
+        String Est_Delivery_Date = txtEstDeliveryDate.Text;
+        String Delivery_Address = txtDeliveryAdres.Text;
+        String Automated_Conf_Email = txtAutoEmComf.Text;
+        String Payment_Details = txtPayDetail.Text;
 
-        //capture the customers OrderNo
+        string Error = "";
+        Error = AnOrder.Valid(Est_Delivery_Date,
+            Delivery_Address, Automated_Conf_Email, Payment_Details);
+        if (Error == "")
+        {
+            //capture the customers OrderNo
 
-        AnOrder.OrderNo = Convert.ToInt32(txtOrderNo.Text);
-        AnOrder.OrderPass = Convert.ToBoolean(txtOrderPass.Text);
-        AnOrder.EstDeliveryDate = Convert.ToDateTime(txtEstDeliveryDate.Text);
-        AnOrder.DeliveryAddress = txtDeliveryAdres.Text;
-        AnOrder.AutomatedConfEmail = txtAutoEmComf.Text;
-        AnOrder.PaymentDetails = Convert.ToInt32(txtPayDetail.Text);
+            AnOrder.Order_No = Convert.ToInt32(txtOrderNo.Text);
+            AnOrder.Order_Pass = Convert.ToBoolean(txtOrderPass.Text);
+            AnOrder.Est_Delivery_Date = Convert.ToDateTime(txtEstDeliveryDate.Text);
+            AnOrder.Delivery_Address = txtDeliveryAdres.Text;
+            AnOrder.Automated_Conf_Email = txtAutoEmComf.Text;
+            AnOrder.Payment_Details = Convert.ToInt32(txtPayDetail.Text);
 
-        //navigation
-        Response.Redirect("OrderViewer.aspx");
+            //navigation
+            Session["AnOrder"] = AnOrder;
+            Response.Redirect("OrderViewer.aspx");
+        }
+        else
+        {
+            lblError.Text = Error;
+        }
 
     }
 }
