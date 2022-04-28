@@ -139,14 +139,14 @@ namespace ClassLibrary
             try
             {
                 //copy the dateAdded value to the DateTemp variable
-                DateTemp = Convert.ToDateTime(DateAdded);
-                if (DateTemp < DateTime.Now.Date)
+               DateTemp = Convert.ToDateTime(DateAdded);
+               if (DateTemp < DateTime.Now.Date)
                 {
                     //record the error
                     Error = Error + "The date cannot be in the past : ";
                 }
                 //check to see if the date is greater than today's date
-                if (DateTemp > DateTime.Now.Date)
+               if (DateTemp > DateTime.Now.Date)
                 {
                     //record the error
                     Error = Error + "The date cannot be in the future : ";
