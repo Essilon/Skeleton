@@ -92,5 +92,76 @@ namespace Testing4
             Assert.AreEqual(AllStock.Count, TestStock.Count);
         }
 
+        [TestMethod]
+        public void AddMethodOK()
+        {
+            //create an instance of the class we want to create
+            clsStockCollection AllStock = new clsStockCollection();
+            //create the item of test data
+            clsStock TestStock = new clsStock();
+            //var to store the primary key
+            Int32 PrimaryKey = 0;
+            //set its properties
+            TestStock.SofaNumber = 1;
+            TestStock.SofaDescription = 1;
+            TestStock.SofaColour = "";
+            TestStock.DateAdded = DateTime.Now.Date;
+            TestStock.Price = 1;
+            TestStock.Available = true;
+            //set ThisCustomer to the test data
+            AllStock.ThisStock = TestStock;
+            //add the record
+            PrimaryKey = AllStock.Add();
+            //set the primary key of the test data
+            TestStock.SofaNumber = PrimaryKey;
+            //find the record
+            AllStock.ThisStock.Find(PrimaryKey);
+            //test to see that the two values are the same
+            Assert.AreEqual(AllStock.ThisStock, TestStock);
+        }
+
+        [TestMethod]
+        public void UpdateMehtodOK()
+        {
+            //create an instance of the class we want to create
+            clsStockCollection AllStock = new clsStockCollection();
+            //create the item of test data
+            clsStock TestStock = new clsStock();
+            //var to store the primary key
+            Int32 PrimaryKey = 0;
+            //set its properties
+            TestStock.SofaNumber = 1;
+            TestStock.SofaDescription = 1;
+            TestStock.SofaColour = "";
+            TestStock.DateAdded = DateTime.Now.Date;
+            TestStock.Price = 1;
+            TestStock.Available = true;
+            //set this stock to the test data 
+            AllStock.ThisStock = TestStock;
+            //add the record 
+            PrimaryKey = AllStock.Add();
+            //set the primary key of the test data 
+            TestStock.SofaNumber = PrimaryKey;
+            //Modify the test data 
+            TestStock.SofaNumber = 2;
+            TestStock.SofaDescription = 2;
+            TestStock.SofaColour = "";
+            TestStock.DateAdded = DateTime.Now.Date;
+            TestStock.Price = 1;
+            TestStock.Available = false;
+            //set the record based on the new test data 
+            AllStock.ThisStock = TestStock;
+            //update the record 
+            AllStock.Update();
+            //find the record 
+            AllStock.ThisStock.Find(PrimaryKey);
+            //test to see thisStock matches the test data 
+            Assert.AreEqual(AllStock.ThisStock, TestStock);
+        }
+
+
+
+
+
     }
 }

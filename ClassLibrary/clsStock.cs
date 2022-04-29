@@ -85,6 +85,7 @@ namespace ClassLibrary
         }
 
         public object Count { get; set; }
+        public bool Active { get; set; }
 
         public bool Find(int SofaNumber)
         {
@@ -115,7 +116,7 @@ namespace ClassLibrary
             }
         }
 
-        public string Valid(string SofaNumber, string SofaDescription, string SofaColour, string DateTime, string Price, string Available)
+        public string Valid(string SofaNumber, string SofaDescription, string SofaColour, string DateAdded, string Price, string Available)
         {
             //create a string variable to store the error
             String Error = "";
@@ -211,6 +212,11 @@ namespace ClassLibrary
 
             //return any error messages
             return Error;
+        }
+
+        public void Find(string sofaNumber)
+        {
+            throw new NotImplementedException();
         }
     }
 }
