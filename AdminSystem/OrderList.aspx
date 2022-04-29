@@ -13,6 +13,11 @@
         <asp:ListBox ID="lstOrderList" runat="server" Height="197px" OnSelectedIndexChanged="ListBox1_SelectedIndexChanged" Width="196px"></asp:ListBox>
         <p>
             <asp:Button ID="btnAdd" runat="server" OnClick="btnAdd_Click" Text="Add" />
+            <asp:Button ID="btnEdit" runat="server" OnClick="btnEdit_Click" Text="Edit" />
+            <asp:Button ID="btnDelete" runat="server" OnClick="btnDelete_Click" Text="Delete" />
+        </p>
+        <p>
+            <asp:Label ID="lblError" runat="server" Text="lblError"></asp:Label>
         </p>
     </form>
 </body>
