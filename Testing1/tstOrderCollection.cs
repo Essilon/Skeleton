@@ -139,13 +139,47 @@ namespace Testing1
             Assert.IsFalse(Found);
         }
 
-        
+        [TestMethod]
+        public void ReportByDeliveryAddressOK()
+        {
+            clsOrderCollection AllOrders = new clsOrderCollection();
+            clsOrderCollection FilteredOrders = new clsOrderCollection();
+            FilteredOrders.ReportByDeliveryAddress("");
+            Assert.AreEqual(AllOrders.Count, FilteredOrders.Count);
+        }
 
+        [TestMethod]
+        public void ReportByDeliveryAddressNoneFound()
+        {
+            clsOrderCollection FilteredOrders = new clsOrderCollection();
+            FilteredOrders.ReportByDeliveryAddress("xxxxxxxxxx");
+            Assert.AreEqual(0, FilteredOrders.Count);
+        }
 
+        [TestMethod]
+        public void ReportByDeliveryAddressTestDataFound()
+        {
+            clsOrderCollection FilteredOrders = new clsOrderCollection();
+            Boolean OK = true;
+            FilteredOrders.ReportByDeliveryAddress("yyyyyyyyyy");
+            if (FilteredOrders.Count == 2)
+            {
+                if (FilteredOrders.OrderList[0].Order_No != 1)
+                {
+                    OK = false;
+                }
+                if (FilteredOrders.OrderList[1].Order_No != 2)
+                {
+                    OK = false;
+                }
+            }
+            else
+            {
+                OK = false;
+            }
 
-
-
-
+            Assert.IsTrue(OK);
+        }
 
     }
 

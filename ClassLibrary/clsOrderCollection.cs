@@ -11,23 +11,9 @@ namespace ClassLibrary
 
         public clsOrderCollection()
         {
-            Int32 Index = 0;
-            Int32 RecordCount = 0;
             clsDataConnection DB = new clsDataConnection();
             DB.Execute("sproc_tblOrders_SelectAll");
-            RecordCount = DB.Count;
-            while (Index < RecordCount)
-            {
-                clsOrder AnOrder = new clsOrder();
-                AnOrder.Order_No = Convert.ToInt32(DB.DataTable.Rows[Index]["Order_No"]);
-                AnOrder.Order_Pass = Convert.ToBoolean(DB.DataTable.Rows[Index]["Order_Pass"]);
-                AnOrder.Est_Delivery_Date = Convert.ToDateTime(DB.DataTable.Rows[Index]["Est_Delivery_Date"]);
-                AnOrder.Delivery_Address = Convert.ToString(DB.DataTable.Rows[Index]["Delivery_Address"]);
-                AnOrder.Automated_Conf_Email = Convert.ToString(DB.DataTable.Rows[Index]["Automated_Conf_Email"]);
-                AnOrder.Payment_Details = Convert.ToInt32(DB.DataTable.Rows[Index]["Payment_Details"]);
-                mOrderList.Add(AnOrder);
-                Index++;
-            }
+            PopulateArray(DB);
         }
 
         public List<clsOrder> OrderList
@@ -86,6 +72,36 @@ namespace ClassLibrary
             DB.AddParameter("@Order_No", mThisOrder.Order_No);
             DB.Execute("sproc_tblOrders_Delete");
         }
+
+        public void ReportByDeliveryAddress(string Delivery_Address)
+        {
+            //filters the records based on a full or partial post code
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@Delivery_Address", Delivery_Address);
+            DB.Execute("sproc_tblOrders_FilterByDeliveryAddress");
+            PopulateArray(DB);
+        }
+
+        void PopulateArray(clsDataConnection DB)
+        {
+            Int32 Index = 0;
+            Int32 RecordCount = 0;
+            RecordCount = DB.Count;
+            mOrderList = new List<clsOrder>();
+            while (Index < RecordCount)
+            {
+                clsOrder AnOrder = new clsOrder();
+                AnOrder.Order_No = Convert.ToInt32(DB.DataTable.Rows[Index]["Order_No"]);
+                AnOrder.Order_Pass = Convert.ToBoolean(DB.DataTable.Rows[Index]["Order_Pass"]);
+                AnOrder.Est_Delivery_Date = Convert.ToDateTime(DB.DataTable.Rows[Index]["Est_Delivery_Date"]);
+                AnOrder.Delivery_Address = Convert.ToString(DB.DataTable.Rows[Index]["Delivery_Address"]);
+                AnOrder.Automated_Conf_Email = Convert.ToString(DB.DataTable.Rows[Index]["Automated_Conf_Email"]);
+                AnOrder.Payment_Details = Convert.ToInt32(DB.DataTable.Rows[Index]["Payment_Details"]);
+                mOrderList.Add(AnOrder);
+                Index++;
+            }
+        }
+
         public clsOrder ThisOrder
         {
             get
