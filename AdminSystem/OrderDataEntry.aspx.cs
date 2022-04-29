@@ -42,8 +42,10 @@ public partial class _1_DataEntry : System.Web.UI.Page
             AnOrder.Automated_Conf_Email = txtAutoEmComf.Text;
             AnOrder.Payment_Details = Convert.ToInt32(txtPayDetail.Text);
 
-            //navigation
-            Session["AnOrder"] = AnOrder;
+            clsOrderCollection OrderList = new clsOrderCollection();
+            OrderList.ThisOrder = AnOrder;
+            OrderList.Add();
+           
             Response.Redirect("OrderViewer.aspx");
         }
         else
