@@ -36,4 +36,20 @@ public partial class _1_List : System.Web.UI.Page
         Session["Order_No"] = -1;
         Response.Redirect("OrderDataEntry.aspx");
     }
+
+    protected void btnDelete_Click(object sender, EventArgs e)
+    {
+        Int32 Order_No;
+
+        if (lstOrderList.SelectedIndex != -1)
+        {
+            Order_No = Convert.ToInt32(lstOrderList.SelectedValue);
+            Session["Order_No"] = Order_No;
+            Response.Redirect("OrderConfirmDelete.aspx");
+        }
+        else
+        {
+            lblError.Text = "Pleasse select a record to delte from the lsit";
+        }
+    }
 }

@@ -8,6 +8,7 @@ using ClassLibrary;
 
 public partial class _1_DataEntry : System.Web.UI.Page
 {
+    Int32 Order_No;
     protected void Page_Load(object sender, EventArgs e)
     {
 
@@ -21,7 +22,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //store the order in session obj
       
 
-        String Order_No = txtOrderNo.Text;
+        
         String Order_Pass = txtOrderPass.Text;
         String Est_Delivery_Date = txtEstDeliveryDate.Text;
         String Delivery_Address = txtDeliveryAdres.Text;
@@ -41,12 +42,22 @@ public partial class _1_DataEntry : System.Web.UI.Page
             AnOrder.Delivery_Address = txtDeliveryAdres.Text;
             AnOrder.Automated_Conf_Email = txtAutoEmComf.Text;
             AnOrder.Payment_Details = Convert.ToInt32(txtPayDetail.Text);
+             
 
             clsOrderCollection OrderList = new clsOrderCollection();
-            OrderList.ThisOrder = AnOrder;
-            OrderList.Add();
            
-            Response.Redirect("OrderViewer.aspx");
+            if (Order_No == -1)
+            {
+                OrderList.ThisOrder = AnOrder;
+                OrderList.Add();
+            }
+            else
+            {
+                OrderList.ThisOrder.Find(Order_No);
+                OrderList.ThisOrder = AnOrder;
+                OrderList.Update();
+            }
+            Response.Redirect("OrderList.aspx");
         }
         else
         {
