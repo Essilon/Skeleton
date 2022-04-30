@@ -8,6 +8,8 @@ using ClassLibrary;
 
 public partial class _1_List : System.Web.UI.Page
 {
+    private object txtFilter;
+
     protected void Page_Load(object sender, EventArgs e)
     {
 
@@ -61,5 +63,48 @@ public partial class _1_List : System.Web.UI.Page
         {
             lblError.Text = "please select a record to edit from the list";
         }
+    }
+
+    protected void btnDelete_Click(object sender, EventArgs e)
+    {
+        //var to store the primary key value of the record to be edited 
+        Int32 SofaNumber;
+        //if a record has been selected from the list 
+        if(lstStocksList.SelectedIndex != -1)
+        {
+            //get the primary key value of the record to edit 
+            SofaNumber = Convert.ToInt32(lstStocksList.SelectedValue);
+            //store the data in the session object 
+            Session["SofaNumber"] = SofaNumber;
+            //rediret to the delete page 
+            Response.Redirect("StockConfirmDelete.aspxx");
+        }
+        else
+        {
+            lblError.Text = "Please select a record to delete  from the list";
+        }
+    }
+
+    protected void btnApply_Click(object sender, EventArgs e)
+    {
+        clsStockCollection Stock = new clsStockCollection();
+        Stock.ReportByAvailable(txtFilter.Text);
+        lstStocksList.DataSource = Stock.StockList;
+        lstStocksList.DataValueField = "SofaNUmber";
+        lstStocksList.DataTextField = "Available";
+        lstStocksList.DataBind();
+    }
+
+
+
+    protected void btnClear_Click(object sender, EventArgs e)
+    {
+        clsStockCollection Stock = new clsStockCollection();
+        Stock.ReportByAvailable("");
+        txtFilter.Text = "";
+        lstStocksList.DataSource = Stock.StockList;
+        lstStocksList.DataValueField = "SofaNumber";
+        lstStocksList.DataTextField = "Available";
+        lstStocksList.DataBind();
     }
 }
