@@ -159,8 +159,78 @@ namespace Testing4
             Assert.AreEqual(AllStock.ThisStock, TestStock);
         }
 
+        [TestMethod]
+        public void DeleteMethodOK()
+        {
+            //create an instance of the class we want to create
+            clsStockCollection AllStock = new clsStockCollection();
+            //create the item of test data
+            clsStock TestStock = new clsStock();
+            //var to store the primary key
+            Int32 PrimaryKey = 0;
+            //set its properties
+            TestStock.SofaNumber = 1;
+            TestStock.SofaDescription = 1;
+            TestStock.SofaColour = "";
+            TestStock.DateAdded = DateTime.Now.Date;
+            TestStock.Price = 1;
+            TestStock.Available = true;
+            //set this stock to the test data 
+            AllStock.ThisStock = TestStock;
+            //add the record 
+            PrimaryKey = AllStock.Add();
+            //set the primary key of the test data 
+            TestStock.SofaNumber = PrimaryKey;
+            //find the record 
+            AllStock.Delete();
+            //now find the record 
+            Boolean Found = AllStock.ThisStock.Find(PrimaryKey);
+            //test to see that the record was not found 
+            Assert.IsFalse(Found);
+        }
+
+        [TestMethod]
+        public void ReportByAvailableMethoidOK()
+        {
+            clsStockCollection AllStock = new clsStockCollection();
+            clsStockCollection FilteredAvailable = new clsStockCollection();
+            FilteredAvailable.ReportByAvailable("");
+            Assert.AreEqual(AllStock.Count, FilteredAvailable.Count);
+        }
 
 
+        [TestMethod]
+        public void ReportByAvailableNoneFound()
+        {
+            clsStockCollection FilteredAvailable = new clsStockCollection();
+            FilteredAvailable.ReportByAvailable("hhhhhhh");
+            Assert.AreEqual(0, FilteredAvailable.Count);
+        }
+
+
+        public void ReportByAvailableTestDataFound()
+        {
+            clsStockCollection FilteredAvailable = new clsStockCollection();
+            Boolean OK = true;
+            FilteredAvailable.ReportByAvailable("yyyyyyyyyyy");
+            if(FilteredAvailable.Count == 2)
+            {
+                if(FilteredAvailable.StockList[0].SofaNumber != 36)
+                {
+                    OK = false;
+                }
+                if (FilteredAvailable.StockList[1].SofaNumber != 37)
+                {
+                    OK = false;
+                }
+            }
+            else
+            {
+                OK = false;
+            }
+
+            Assert.IsTrue(OK);
+        }
 
 
     }

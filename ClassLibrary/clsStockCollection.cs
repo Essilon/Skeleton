@@ -82,5 +82,25 @@ namespace ClassLibrary
             //execute the query returning the primary key value
             DB.Execute("sproc_tblStock_Insert");
         }
+
+        public void Delete()
+        {
+            //deletes the record pointed to by thisAddress
+            //connect to the database 
+            clsDataConnection DB = new clsDataConnection();
+            //set the parameters for the stored procedure 
+            DB.AddParameter("@SofaNumber", mThisStock.SofaNumber);
+            //execute the stored procedure 
+            DB.Execute("sproc_tblStock_Delete");
+        }
+
+        public void ReportByAvailable(string Available)
+        {
+            //filters the record based on a full or partial available
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@Available", Available);
+            DB.Execute("sproc_tblStock_FilterByAvaialble");
+        }
+
     }
 }
