@@ -11,6 +11,7 @@ namespace Testing2
         public void InstanceOk()
         {
             clsStaff AnStaff = new clsStaff();
+
             Assert.IsNotNull(AnStaff);
 
         }
