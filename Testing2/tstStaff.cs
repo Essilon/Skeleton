@@ -8,6 +8,38 @@ namespace Testing2
     public class tstStaff
     {
         [TestMethod]
+
+        public void TestStaffNoFound()
+        {
+            clsStaff AnStaff = new clsStaff();
+
+            Boolean Found = false;
+
+            Boolean Ok = false;
+
+            Int32 StaffNo = 21;
+
+            Found = AnStaff.Find(StaffNo);
+
+            if (AnStaff.StaffNo != 21)
+            {
+                Ok = false;
+            }
+            Assert.IsTrue(Ok);
+        }
+
+        public void FindMethodOK()
+        {
+            clsStaff AnStaff = new clsStaff();
+
+            Boolean Found = false;
+
+            Int32 StaffNo = 21;
+            Found = AnStaff.Find(StaffNo);
+            Assert.IsTrue(Found);
+
+        }
+
         public void InstanceOk()
         {
             clsStaff AnStaff = new clsStaff();
@@ -88,6 +120,102 @@ namespace Testing2
             AnStaff.StaffFullName = TestData;
 
             Assert.AreEqual(AnStaff.StaffFullName, TestData);
+        }
+
+        public void TestDateAddedFound()
+        {
+            clsStaff AnStaff = new clsStaff();
+
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 StaffNo = 21;
+            Found = AnStaff.Find(StaffNo);
+
+            if (AnStaff.StaffDateOfBirth != Convert.ToDateTime("16/09/2015"))
+            {
+                OK = false;
+
+            }
+
+            Assert.IsTrue(OK); 
+
+        }
+
+        public void TestStaffAge() 
+        { 
+         clsStaff AnStaff = new clsStaff();
+
+        Boolean Found = false;
+
+        Boolean Ok = false;
+
+        Int32 StaffNo = 21;
+
+        Found = AnStaff.Find(StaffNo);
+
+            if (AnStaff.StaffAge != 21)
+            {
+                Ok = false;
+            }
+            Assert.IsTrue(Ok);
+        }
+
+
+        public void TestStaffTarget()
+        {
+            clsStaff AnStaff = new clsStaff();
+
+            Boolean Found = false;
+
+            Boolean Ok = false;
+
+            Int32 StaffNo = 21;
+
+            Found = AnStaff.Find(StaffNo);
+
+            if (AnStaff.StaffTarget != 21)
+            {
+                Ok = false;
+            }
+            Assert.IsTrue(Ok);
+        }
+
+        public void TestStaffFullName()
+        {
+            clsStaff AnStaff = new clsStaff();
+
+            Boolean Found = false;
+
+            Boolean Ok = false;
+
+            Int32 StaffNo = 21;
+
+            Found = AnStaff.Find(StaffNo);
+
+            if (AnStaff.StaffFullName != "Josh Mosh ")
+            {
+                Ok = false;
+            }
+            Assert.IsTrue(Ok);
+        }
+
+        public void TestStaffGender()
+        {
+            clsStaff AnStaff = new clsStaff();
+
+            Boolean Found = false;
+
+            Boolean Ok = false;
+
+            Int32 StaffNo = 21;
+
+            Found = AnStaff.Find(StaffNo);
+
+            if (AnStaff.Male != true)
+            {
+                Ok = false;
+            }
+            Assert.IsTrue(Ok);
         }
 
     }
