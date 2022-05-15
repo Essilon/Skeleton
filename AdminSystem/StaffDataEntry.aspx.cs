@@ -18,32 +18,34 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //create a new insance of clsStaff
         clsStaff AnStaff = new clsStaff();
 
-        AnStaff.Employee_No = txtEmployeeNo.Text;
-
-          AnStaff.StaffTarget = Convert.ToInt32(txtEmployeeTarget.Text);
-
-
-        //capture the staff no
-        AnStaff.StaffFullName = txtEmployeeFullName.Text; 
-       
-
-
-        AnStaff.StaffDateOfBirth = Convert.ToDateTime(txtDateOfBirth.Text);
-         
-        
+        string Employee_No = txtEmployeeNo.Text;
+        string StaffTarget = txtEmployeeTarget.Text;
+        string StaffFullName = txtEmployeeFullName.Text;
+        string StaffDateOfBirth = txtDateOfBirth.Text;
         AnStaff.Male = chkGender.Checked;
-        
+        string StaffAge = txtEmployeeAge.Text;
 
+        string Error = "";
+        Error = AnStaff.Valid(StaffAge,StaffDateOfBirth,StaffFullName,StaffTarget);
+        if (Error == "")
+        {
+            AnStaff.StaffNo = Convert.ToInt32(Employee_No);
+            AnStaff.StaffAge = Convert.ToInt32(StaffAge);
+            AnStaff.StaffTarget = Convert.ToInt32(StaffTarget);
+            AnStaff.StaffFullName = StaffFullName;
+            AnStaff.StaffDateOfBirth = Convert.ToDateTime(StaffDateOfBirth);
+           
+            Session["AnStaff"] = AnStaff;
+            Response.Redirect("StaffViewer.aspx");
 
-        AnStaff.StaffAge = Convert.ToInt32 (txtEmployeeAge.Text);
-
-
+        }
+        else
+        {
+            lblError.Text = Error; 
+        }
       
         
-        Session["AnStaff"] = AnStaff;
-
-        //navigates to viewer page
-        Response.Redirect("StaffViewer.aspx");
+        
 
     }
 }
