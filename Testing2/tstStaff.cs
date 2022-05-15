@@ -239,20 +239,20 @@ namespace Test_Framework
         {
             clsStaff AnStaff = new clsStaff();
 
-            String Error = "";
+            string Error = "";
 
             Error = AnStaff.Valid(StaffFullName, StaffAge, StaffDateOfBirth, StaffTarget);
-            Assert.AreEqual(Error, "");
+            Assert.AreNotEqual(Error, "");
 
         }
         [TestMethod]
         public void StaffFullNameMin()
         {
             clsStaff AnStaff = new clsStaff();
-            String Error = "";
+            string Error = "";
             string StaffFullName = "a";
             Error = AnStaff.Valid(StaffFullName, StaffAge, StaffDateOfBirth, StaffTarget);
-            Assert.AreEqual(Error, "");
+            Assert.AreNotEqual(Error, "");
         }
 
         [TestMethod]
@@ -263,7 +263,7 @@ namespace Test_Framework
             String Error = "";
             string StaffFullName = "aa";
             Error = AnStaff.Valid(StaffFullName, StaffAge, StaffDateOfBirth, StaffTarget);
-            Assert.AreEqual(Error, "");
+            Assert.AreNotEqual(Error, "");
         }
         [TestMethod]
 
@@ -273,7 +273,7 @@ namespace Test_Framework
             String Error = "";
             string StaffFullName = "aaaaa";
             Error = AnStaff.Valid(StaffFullName, StaffAge, StaffDateOfBirth, StaffTarget);
-            Assert.AreEqual(Error, "");
+            Assert.AreNotEqual(Error, "");
         }
 
         [TestMethod]
@@ -285,7 +285,7 @@ namespace Test_Framework
             string StaffFullName = "";
             StaffFullName = StaffFullName.PadRight(50, 'a');
             Error = AnStaff.Valid(StaffFullName, StaffAge, StaffDateOfBirth, StaffTarget);
-            Assert.AreEqual(Error, "");
+            Assert.AreNotEqual(Error, "");
         }
 
         [TestMethod]
@@ -297,7 +297,7 @@ namespace Test_Framework
             string StaffFullName = "";
             StaffFullName = StaffFullName.PadRight(25, 'a');
             Error = AnStaff.Valid(StaffFullName, StaffAge, StaffDateOfBirth, StaffTarget);
-            Assert.AreEqual(Error, "");
+            Assert.AreNotEqual(Error, "");
         }
         [TestMethod]
         public void StaffFullNameMaxPlusOne()

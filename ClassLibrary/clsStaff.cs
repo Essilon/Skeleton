@@ -98,8 +98,8 @@ namespace ClassLibrary
           return true;
             
         }
-           public string Valid(string StaffAge, string StaffDateOfBirth, string StaffFullName, string StaffTarget)
-          {
+        public string Valid(string StaffAge, string StaffDateOfBirth, string StaffFullName, string StaffTarget)
+        {
             String Error = "";
             int Age;
             DateTime DateTemp;
@@ -107,7 +107,7 @@ namespace ClassLibrary
 
             if (StaffFullName.Length == 0)
             {
-                Error = Error + "The Staff full name may not be blank : ";  
+                Error = Error + "The Staff full name may not be blank : ";
             }
 
             if (StaffFullName.Length > 50)
@@ -117,34 +117,34 @@ namespace ClassLibrary
             try
             {
                 DateTemp = Convert.ToDateTime(StaffDateOfBirth);
-                if (DateTemp < DateTime.Now.Date)
+                if (DateTemp > DateTime.Now.Date)
                 {
-                    Error = Error + "The Date cannot be in the past : ";
+                    Error = Error + "The Date cannot be in the future : ";
                 }
             }
             catch
             {
-                Error = Error + "The date was not valid"; 
+                Error = Error + "The date was not valid";
             }
             try
             {
                 Age = Convert.ToInt32(StaffAge);
-                
+
                 if (Age < 0)
                 {
-                    Error = Error + "This Age is not possible" ; 
+                    Error = Error + "This Age is not possible";
                 }
 
                 if (Age > 100)
                 {
-                    Error = Error+ "This age is too old for work";
+                    Error = Error + "This age is too old for work";
                 }
             }
-            catch { Error = Error+ "Error"; }
+            catch { Error = Error + "Error"; }
 
             try
             {
-                target = Convert.ToInt32(StaffAge);
+                target = Convert.ToInt32(StaffTarget);
 
                 if (target < 0)
                 {
@@ -159,7 +159,8 @@ namespace ClassLibrary
             catch { Error = Error + "Error"; }
 
 
-            return Error; 
+            return Error;
+        
         }
     }
 }
