@@ -19,6 +19,9 @@ namespace ClassLibrary
             }
         }
 
+       
+       
+
         private Int32 mStaffNo; 
         public Int32 StaffNo
         {
@@ -89,12 +92,74 @@ namespace ClassLibrary
             mStaffNo = 21;
             mStaffAge = 21;
             mStaffTarget = 21;
-            mStaffFullName = "Josh Mosh";
+            mStaffFullName = "Ken Dow";
             mStaffDateOfBirth = Convert.ToDateTime("16/9/2015");
             mMale = true; 
           return true;
             
         }
+           public string Valid(string StaffAge, string StaffDateOfBirth, string StaffFullName, string StaffTarget)
+          {
+            String Error = "";
+            int Age;
+            DateTime DateTemp;
+            int target;
 
+            if (StaffFullName.Length == 0)
+            {
+                Error = Error + "The Staff full name may not be blank : ";  
+            }
+
+            if (StaffFullName.Length > 50)
+            {
+                Error = Error + "The Staff Full Name should be less than 50 characters :  ";
+            }
+            try
+            {
+                DateTemp = Convert.ToDateTime(StaffDateOfBirth);
+                if (DateTemp < DateTime.Now.Date)
+                {
+                    Error = Error + "The Date cannot be in the past : ";
+                }
+            }
+            catch
+            {
+                Error = Error + "The date was not valid"; 
+            }
+            try
+            {
+                Age = Convert.ToInt32(StaffAge);
+                
+                if (Age < 0)
+                {
+                    Error = Error + "This Age is not possible" ; 
+                }
+
+                if (Age > 100)
+                {
+                    Error = Error+ "This age is too old for work";
+                }
+            }
+            catch { Error = Error+ "Error"; }
+
+            try
+            {
+                target = Convert.ToInt32(StaffAge);
+
+                if (target < 0)
+                {
+                    Error = Error + "This number is not possible";
+                }
+
+                if (target > 50)
+                {
+                    Error = Error + "This number is to big to be the target";
+                }
+            }
+            catch { Error = Error + "Error"; }
+
+
+            return Error; 
+        }
     }
 }
