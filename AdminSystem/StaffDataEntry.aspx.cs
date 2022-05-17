@@ -8,6 +8,7 @@ using ClassLibrary;
 
 public partial class _1_DataEntry : System.Web.UI.Page
 {
+    Int32 EmployeeNo;
     protected void Page_Load(object sender, EventArgs e)
     {
 
@@ -18,26 +19,38 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //create a new insance of clsStaff
         clsStaff AnStaff = new clsStaff();
 
-        string Employee_No = txtEmployeeNo.Text;
+      
         string StaffTarget = txtEmployeeTarget.Text;
         string StaffFullName = txtEmployeeFullName.Text;
         string StaffDateOfBirth = txtDateOfBirth.Text;
-        AnStaff.Male = chkGender.Checked;
         string StaffAge = txtEmployeeAge.Text;
 
         string Error = "";
         Error = AnStaff.Valid(StaffAge,StaffDateOfBirth,StaffFullName,StaffTarget);
         if (Error == "")
         {
-            AnStaff.StaffNo = Convert.ToInt32(Employee_No);
+            
+            AnStaff.StaffNo = EmployeeNo;
             AnStaff.StaffAge = Convert.ToInt32(StaffAge);
             AnStaff.StaffTarget = Convert.ToInt32(StaffTarget);
             AnStaff.StaffFullName = StaffFullName;
             AnStaff.StaffDateOfBirth = Convert.ToDateTime(StaffDateOfBirth);
-           
-            Session["AnStaff"] = AnStaff;
-            Response.Redirect("StaffViewer.aspx");
+            AnStaff.Male = chkGender.Checked;
 
+            clsStaffCollection StaffList = new clsStaffCollection();
+            if (EmployeeNo == -1)
+            {
+                StaffList.ThisStaff = AnStaff;
+                StaffList.Add();
+            }
+            else
+            {
+                StaffList.ThisStaff.Find(EmployeeNo);
+                StaffList.ThisStaff = AnStaff;
+                StaffList.Update();
+               
+            }
+            Response.Redirect("StaffList.aspx");
         }
         else
         {

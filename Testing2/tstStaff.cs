@@ -74,7 +74,7 @@ namespace Test_Framework
             //create an instance of the class we want to create 
             clsStaff AnStaff = new clsStaff();
 
-            //create some test data to assignm to the property 
+            //create some test data to assignm to th
             DateTime TestData = DateTime.Now.Date;
 
             AnStaff.StaffDateOfBirth = TestData;
