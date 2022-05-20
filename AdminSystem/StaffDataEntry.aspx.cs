@@ -17,6 +17,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
     protected void btnOK_Click(object sender, EventArgs e)
     {
         //create a new insance of clsStaff
+
         clsStaff AnStaff = new clsStaff();
 
       
@@ -60,5 +61,21 @@ public partial class _1_DataEntry : System.Web.UI.Page
         
         
 
+    }
+
+    protected void btnFind_Click(object sender, EventArgs e)
+    {
+        clsStaff AnStaff = new clsStaff();
+        Int32 StaffNo;
+        Boolean Found = false;
+        StaffNo = Convert.ToInt32(txtEmployeeNo.Text);
+        if (Found == true)
+        {
+            txtEmployeeNo.Text = Convert.ToString(AnStaff.StaffNo);
+            txtDateOfBirth.Text = Convert.ToString(AnStaff.StaffDateOfBirth);
+            txtEmployeeAge.Text = Convert.ToString(AnStaff.StaffAge);
+            txtEmployeeFullName.Text = AnStaff.StaffFullName;
+            txtEmployeeTarget.Text = Convert.ToString(AnStaff.StaffNo);
+        }
     }
 }
