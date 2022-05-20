@@ -125,11 +125,11 @@ namespace Test_Framework
             clsStaffCollection AllStaff = new clsStaffCollection();
             clsStaff TestItem = new clsStaff();
             Int32 PrimaryKey = 0;
-            TestItem.StaffNo = 4;
-            TestItem.StaffAge = 19;
-            TestItem.StaffTarget = 6;
-            TestItem.StaffFullName = " Mario Mas";
-            TestItem.Male = false;
+            TestItem.StaffNo = 19;
+            TestItem.StaffAge = 22;
+            TestItem.StaffTarget = 1;
+            TestItem.StaffFullName = "Ken Dow";
+            TestItem.Male = true;
             TestItem.StaffDateOfBirth = DateTime.Now.Date;
             AllStaff.ThisStaff = TestItem;
             PrimaryKey = AllStaff.Add();
@@ -138,7 +138,7 @@ namespace Test_Framework
             AllStaff.Delete();
 
             Boolean Found = AllStaff.ThisStaff.Find(PrimaryKey);
-            Assert.IsTrue(Found);
+            Assert.IsFalse(Found);
         }
 
         [TestMethod]

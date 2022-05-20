@@ -21,11 +21,11 @@ namespace Test_Framework
 
             Boolean Ok = true;
 
-            Int32 StaffNo = 21;
+            Int32 StaffNo = 1;
 
             Found = AnStaff.Find(StaffNo);
 
-            if (AnStaff.StaffNo != 21)
+            if (AnStaff.StaffNo != 1)
             {
                 Ok = false;
             }
@@ -38,7 +38,7 @@ namespace Test_Framework
 
             Boolean Found = false;
 
-            Int32 StaffNo = 21;
+            Int32 StaffNo = 22;
             Found = AnStaff.Find(StaffNo);
             Assert.IsTrue(Found);
 
@@ -133,10 +133,10 @@ namespace Test_Framework
 
             Boolean Found = false;
             Boolean OK = true;
-            Int32 StaffNo = 21;
+            Int32 StaffNo = 1;
             Found = AnStaff.Find(StaffNo);
 
-            if (AnStaff.StaffDateOfBirth != Convert.ToDateTime("16/09/2015"))
+            if (AnStaff.StaffDateOfBirth != Convert.ToDateTime("10/02/2000"))
             {
                 OK = false;
 
@@ -154,11 +154,11 @@ namespace Test_Framework
 
             Boolean Ok = true;
 
-            Int32 StaffNo = 21;
+            Int32 StaffNo = 1;
 
             Found = AnStaff.Find(StaffNo);
 
-            if (AnStaff.StaffAge != 21)
+            if (AnStaff.StaffAge != 22)
             {
                 Ok = false;
             }
@@ -174,11 +174,11 @@ namespace Test_Framework
 
             Boolean Ok = true;
 
-            Int32 StaffNo = 21;
+            Int32 StaffNo = 1;
 
             Found = AnStaff.Find(StaffNo);
 
-            if (AnStaff.StaffTarget != 21)
+            if (AnStaff.StaffTarget != 5)
             {
                 Ok = false;
             }
@@ -194,11 +194,11 @@ namespace Test_Framework
 
             Boolean OK = true;
 
-            Int32 StaffNo = 21;
+            Int32 StaffNo = 1;
 
             Found = AnStaff.Find(StaffNo);
 
-            if (AnStaff.StaffFullName != "Ken Dow")
+            if (AnStaff.StaffFullName != "Kenny Williamosn")
             {
                 OK = false;
             }
@@ -214,7 +214,7 @@ namespace Test_Framework
 
             Boolean Ok = true;
 
-            Int32 StaffNo = 21;
+            Int32 StaffNo = 1;
 
             Found = AnStaff.Find(StaffNo);
 

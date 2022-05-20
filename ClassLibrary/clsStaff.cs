@@ -89,13 +89,26 @@ namespace ClassLibrary
 
         public bool Find(int StaffNo)
         {
-            mStaffNo = 21;
-            mStaffAge = 21;
-            mStaffTarget = 21;
-            mStaffFullName = "Ken Dow";
-            mStaffDateOfBirth = Convert.ToDateTime("16/9/2015");
-            mMale = true; 
-          return true;
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("Employee_No", StaffNo);
+            DB.Execute("sproc_tblStaff_FilterByStaffNo");
+
+            if(DB.Count == 1)
+            {
+                mStaffNo = Convert.ToInt32(DB.DataTable.Rows[0]["Employee_No"]);
+                mStaffAge =Convert.ToInt32(DB.DataTable.Rows[0]["EmployeeAge "]);
+                mStaffTarget = Convert.ToInt32(DB.DataTable.Rows[0]["EmployeeTarget"]);
+                mStaffFullName = Convert.ToString(DB.DataTable.Rows[0]["EmployeeFullName"]);
+                mMale = Convert.ToBoolean(DB.DataTable.Rows[0]["Gender "]);
+                mStaffDateOfBirth = Convert.ToDateTime(DB.DataTable.Rows[0]["DateOfBirth"]);
+                return true;
+            }
+            else
+            {
+                return false;
+
+            }
+            
             
         }
         public string Valid(string StaffAge, string StaffDateOfBirth, string StaffFullName, string StaffTarget)
